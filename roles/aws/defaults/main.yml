@@ -1,7 +1,7 @@
 ---
 ami: "{{ redhat_ami }}"
 instance_type: "t2.micro"
-tag_name: "ska_ads"
+tag_name: "ska_adt"
 tag_expireon: "2017-06-30"
 data_vol_size: 30
 instance_name: "{{ tag_name }}_s11"

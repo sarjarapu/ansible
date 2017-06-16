@@ -1,0 +1,67 @@
+---
+- name: print instance_check.instances.0 on create instance
+  debug: msg="{{ instance_check.instances.0 is undefined }}"
+
+- name: if not exists already, create an AWS EC2 instance
+  ec2:
+     key_name: "{{ security_key }}"
+     region: "{{ region }}"
+     zone: "{{ availability_zone }}"
+     group: "{{ security_group }}"
+     instance_type: "{{ instance_type }}"
+     image: "{{ ami }}"
+     wait: yes
+     instance_tags:
+       "Name": "{{ instance_name }}"
+       "owner": "{{ tag_owner }}"
+       "expire-on": "{{ tag_expireon }}"
+     count: 1
+     volumes:
+       - device_name: /dev/sda1
+         volume_type: gp2
+         volume_size: 10
+         delete_on_termination: true
+       - device_name: /dev/xvdb
+         volume_type: gp2
+         volume_size: "{{ data_vol_size }}"
+         delete_on_termination: true
+         when: create_data_folder == True
+  register: create_output
+  when: instance_check.instances.0 is undefined
+
+- name: add the [{{ server_group_name }}] to hosts file
+  lineinfile:
+    dest: "hosts"
+    line: "[{{ server_group_name }}]"
+    state: present
+    create: True
+  when: instance_check.instances.0 is undefined
+
+- name: add the {{ create_output.instances.0.public_dns_name }} to [{{ server_group_name }}] group in hosts file
+  lineinfile:
+    dest: "hosts"
+    regexp: "^{{ create_output.instances.0.public_dns_name }}"
+    insertafter: "{{ server_group_name }}"
+    line: "{{ create_output.instances.0.public_dns_name }}"
+    state: present
+    create: True
+  when: instance_check.instances.0 is undefined
+
+- name: get the instance volumes
+  ec2_vol:
+    region: "{{ region }}"
+    instance: "{{ create_output.instances.0.id }}"
+    state: list
+  register: volumes_output
+  when: instance_check.instances.0 is undefined
+
+- name: set the tags for the instance volumes
+  ec2_tag:
+    region: "{{ region }}" 
+    resource: "{{ item.id }}"
+    tags:
+       "Name": "{{ instance_name }}-{{ item.attachment_set.device }}"
+       "owner": "{{ tag_owner }}"
+       "expire-on": "{{ tag_expireon }}"
+  with_items: "{{ volumes_output.volumes }}"
+  when: instance_check.instances.0 is undefined
