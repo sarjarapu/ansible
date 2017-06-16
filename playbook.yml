@@ -2,4 +2,4 @@
 - name: create aws instances
   hosts: local
   roles:
-    - aws-mongo
+    - aws

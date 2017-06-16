@@ -30,5 +30,43 @@
          volume_type: gp2
          volume_size: "{{ data_vol_size }}"
          delete_on_termination: true
-  register: instance_output
+         when: create_data_folder == True
+  register: create_output
+  when: instance_check.instances.0 is undefined
+
+- name: add the [{{ server_group_name }}] to hosts file
+  lineinfile:
+    dest: "hosts"
+    line: "[{{ server_group_name }}]"
+    state: present
+    create: True
+  when: instance_check.instances.0 is undefined
+
+- name: add the {{ instance_check.instances.0.public_dns_name }} to [{{ server_group_name }}] group in hosts file
+  lineinfile:
+    dest: "hosts"
+    regexp: "^{{ instance_check.instances.0.public_dns_name }}"
+    insertafter: "{{ server_group_name }}"
+    line: "{{ instance_check.instances.0.public_dns_name }}"
+    state: present
+    create: True
+  when: instance_check.instances.0 is defined
+
+- name: get the instance volumes
+  ec2_vol:
+    region: "{{ region }}"
+    instance: "{{ instance_check.instances.0.id }}"
+    state: list
+  register: volumes_output
+  when: instance_check.instances.0 is undefined
+
+- name: set the tags for the instance volumes
+  ec2_tag:
+    region: "{{ region }}" 
+    resource: "{{ item.id }}"
+    tags:
+       "Name": "{{ instance_name }}-{{ item.attachment_set.device }}"
+       "owner": "{{ tag_owner }}"
+       "expire-on": "{{ tag_expireon }}"
+  with_items: "{{ volumes_output.volumes }}"
   when: instance_check.instances.0 is undefined

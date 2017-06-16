@@ -1,5 +1,5 @@
 ---
 - hosts: localhost
-  remote_user: root
+  ssh_user: root
   roles:
     - mongo
