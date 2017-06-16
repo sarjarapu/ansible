@@ -1,5 +1,2 @@
 ---
-mongo_version: "2.4.14"
-replset_name: "rs0"
 mongo_port: 27017
-data_folder: "/data"

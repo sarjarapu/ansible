@@ -1,5 +1,5 @@
 ---
-- name: create mongo servers
-  hosts: test
+- name: create aws instances
+  hosts: local
   roles:
-    - mongo
+    - aws-mongo

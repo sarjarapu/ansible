@@ -1,2 +1,4 @@
 ---
-# defaults file for mongo
+mongo_version: "2.4.14"
+replset_name: "rs0"
+data_folder: "/data"
