@@ -7,9 +7,6 @@
       "tag:Name": "{{ instance_name }}"
   register: instance_check
 
-- name: print on main
-  debug: msg="{{ instance_check.instances.0 is undefined }}"
-
 - include: create.instance.yml
   when: instance_check.instances.0 is undefined
 

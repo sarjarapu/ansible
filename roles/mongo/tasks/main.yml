@@ -41,7 +41,7 @@
 
 - name: copy the mongod.conf 
   template:
-    src: "mongod_v{{ mongo_version[:-3] }}.j2"
+    src: "mongod_v{{ mongo_version[:-3] }}.hbs"
     dest: /etc/mongod.conf
   become: true
 

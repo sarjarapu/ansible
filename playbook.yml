@@ -1,5 +1,24 @@
 ---
-- name: create aws instances
+# - name: playbook for creating standalone
+#   hosts: local
+#   roles:
+#     - deployment
+
+
+- name: create aws instance
   hosts: local
+  vars:
+    tag_name: "ska_adt"
+    group_name: "s1"
+    server_number: 1
   roles:
     - aws
+
+- name: install and configure mongodb in group
+  hosts: "ska_adt_s1"
+  vars:
+    mongo_version: "2.4.14"
+    group_name: "s1"
+    server_number: 1
+  roles:
+    - mongo
