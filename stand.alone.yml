@@ -1,10 +1,4 @@
 ---
-# - name: playbook for creating standalone
-#   hosts: local
-#   roles:
-#     - deployment
-
-
 - name: create aws instance
   hosts: local
   vars:

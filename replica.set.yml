@@ -1,0 +1,25 @@
+---
+- name: create aws instance
+  hosts: local
+  tasks:
+    - include_role:
+        name: aws
+      vars:
+        tag_name: "ska_adt"
+        group_name: "s1"
+        server_number: "{{ role_item }}"
+      with_items: 
+        - 1
+        - 2
+        - 3
+      loop_control:
+        loop_var: "role_item"
+
+- name: install and configure mongodb in group
+  hosts: "ska_adt_s1"
+  vars:
+    mongo_version: "2.4.14"
+    group_name: "s1"
+    server_number: 1
+  roles:
+    - mongo
