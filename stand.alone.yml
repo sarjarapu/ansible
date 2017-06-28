@@ -1,18 +1,20 @@
 ---
 - name: create aws instance
   hosts: local
-  vars:
-    tag_name: "ska_adt"
-    group_name: "s1"
-    server_number: 1
   roles:
-    - aws
+    - role: aws
+      server_number: 1
+      instance_type: "t2.large"
+      tag_name: "ska_ads"
+      group_name: "s2"
 
 - name: install and configure mongodb in group
-  hosts: "ska_adt_s1"
-  vars:
-    mongo_version: "2.4.14"
-    group_name: "s1"
-    server_number: 1
+  hosts: ska_ads_s2
   roles:
-    - mongo
+    - role: mongo
+      mongo_version: "2.4.14"
+      server_number: 1
+      instance_type: "t2.large"
+      tag_name: "ska_ads"
+      group_name: "s2"
+
