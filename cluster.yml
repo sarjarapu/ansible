@@ -1,0 +1,54 @@
+---
+- name: create 3 aws instance for shards 1, 2 
+  hosts: local
+  tasks:
+    - include_role:
+        name: aws
+      vars:
+        instance_type: "m4.large"
+        tag_name: "ska_ads"
+        group_name: "s{{ role_item[0] }}"
+        server_number: "{{ role_item[1] }}"
+        data_vol_size: 200
+      with_nested:
+        - [1, 2]
+        - [1, 2, 3]
+      loop_control:
+        loop_var: "role_item"
+
+- name: create aws instance for config servers 
+  hosts: local
+  tasks:
+    - include_role:
+        name: aws
+      vars:
+        instance_type: "t2.medium"
+        tag_name: "ska_ads"
+        group_name: "c"
+        server_number: "{{ role_item }}"
+        data_vol_size: 30
+      with_items: 
+        - [1, 2, 3]
+      loop_control:
+        loop_var: "role_item"
+
+
+# # Wait for the server disks to be ready then execute it again
+# - name: install and configure mongodb in replicaset instances
+#   hosts: "ska_ads_s1"
+#   roles:
+#     - role: mongo
+#       mongo_version: "2.4.14"
+#       tag_name: "ska_ads"
+#       group_name: "s1"
+#       replset_name: "shard1"
+
+# # Wait for the server disks to be ready then execute it again
+# - name: install and configure mongodb in replicaset instances
+#   hosts: "ska_ads_s2"
+#   roles:
+#     - role: mongo
+#       mongo_version: "2.4.14"
+#       tag_name: "ska_ads"
+#       group_name: "s2"
+#       replset_name: "shard2"

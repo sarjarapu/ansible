@@ -3,18 +3,16 @@
   hosts: local
   roles:
     - role: aws
-      server_number: 1
       instance_type: "t2.large"
       tag_name: "ska_ads"
-      group_name: "s2"
+      group_name: "s"
 
 - name: install and configure mongodb in group
-  hosts: ska_ads_s2
+  hosts: ska_ads_s
   roles:
     - role: mongo
       mongo_version: "2.4.14"
-      server_number: 1
       instance_type: "t2.large"
       tag_name: "ska_ads"
-      group_name: "s2"
+      group_name: "s"
 

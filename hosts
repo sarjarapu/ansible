@@ -1,7 +1,16 @@
 [local]
 localhost ansible_connection=local ansible_python_interpreter=python
-
-[ska_adt_s1]
-ec2-54-191-158-51.us-west-2.compute.amazonaws.com
-ec2-54-187-17-116.us-west-2.compute.amazonaws.com
-ec2-54-187-7-84.us-west-2.compute.amazonaws.com
+[ska_ads_s1]
+ec2-54-187-7-100.us-west-2.compute.amazonaws.com
+ec2-54-187-70-100.us-west-2.compute.amazonaws.com
+ec2-54-212-200-148.us-west-2.compute.amazonaws.com
+[ska_ads_s2]
+ec2-34-211-48-245.us-west-2.compute.amazonaws.com
+ec2-54-149-28-150.us-west-2.compute.amazonaws.com
+ec2-54-149-32-241.us-west-2.compute.amazonaws.com
+[ska_ads_c]
+ec2-34-211-48-240.us-west-2.compute.amazonaws.com
+ec2-54-202-184-15.us-west-2.compute.amazonaws.com
+ec2-54-202-92-208.us-west-2.compute.amazonaws.com
+[ska_ads_s]
+ec2-54-187-149-213.us-west-2.compute.amazonaws.com

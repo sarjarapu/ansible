@@ -1,13 +1,15 @@
 ---
-- name: create aws instance
+- name: create aws instance for replicaset 
   hosts: local
   tasks:
     - include_role:
         name: aws
       vars:
-        tag_name: "ska_adt"
-        group_name: "s1"
         server_number: "{{ role_item }}"
+        instance_type: "m4.large"
+        tag_name: "ska_ads"
+        group_name: "s1"
+        data_vol_size: 200
       with_items: 
         - 1
         - 2
@@ -15,11 +17,12 @@
       loop_control:
         loop_var: "role_item"
 
-- name: install and configure mongodb in group
-  hosts: "ska_adt_s1"
-  vars:
-    mongo_version: "2.4.14"
-    group_name: "s1"
-    server_number: 1
+# Wait for the server disks to be ready then execute it again
+- name: install and configure mongodb in replicaset instances
+  hosts: "ska_ads_s1"
   roles:
-    - mongo
+    - role: mongo
+      mongo_version: "2.4.14"
+      tag_name: "ska_ads"
+      group_name: "s1"
+      replset_name: "shard1"
