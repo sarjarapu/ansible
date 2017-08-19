@@ -1,0 +1,36 @@
+---
+
+- name: copy mongod.service for mongod-oplog.service
+  copy:
+    remote_src: true
+    src: /lib/systemd/system/mongod.service
+    dest: /lib/systemd/system/mongod-oplog.service
+  become: true
+
+- name: replace mongod.conf to mongod-oplog.conf in mongod-oplog.service file
+  become: true
+  replace:
+    path: /lib/systemd/system/mongod-oplog.service
+    regexp: 'mongod.conf'
+    replace: 'mongod-oplog.conf'
+
+- name: replace mongod.pid to mongod-oplog.pid in mongod-oplog.service file
+  become: true
+  replace:
+    path: /lib/systemd/system/mongod-oplog.service
+    regexp: 'mongod.pid'
+    replace: 'mongod-oplog.pid'
+
+- name: replace mongod.pid to mongod-oplog.pid in mongod-oplog.conf file
+  become: true
+  replace:
+    path: /etc/mongod-oplog.conf
+    regexp: 'mongod.pid'
+    replace: 'mongod-oplog.pid'
+
+- name: start and enable mongod-oplog.service
+  become: true
+  service:
+    name: mongod-oplog
+    state: started
+    enabled: yes

@@ -3,6 +3,19 @@ Role Name
 
 A brief description of the role goes here.
 
+
+
+# Setup: 
+# Servers:  server-1      server-2       server-3
+#   AppDB:  primary       secondary      sec / arb
+#  OplgDB:  sec / arb     secondary      primary
+#  OpsWeb:  http        
+#  Daemon:                BackupD
+# File SS:  mount 
+
+
+wget https://downloads.mongodb.com/on-prem-mms/rpm/mongodb-mms-3.4.7.479-1.x86_64.rpm
+
 Requirements
 ------------
 

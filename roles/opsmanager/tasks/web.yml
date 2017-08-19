@@ -1,0 +1,23 @@
+---
+- name: print the webserver hostname, ip address and appdb members
+  debug: msg="private_dns [{{private_dns}}] private_ip [{{private_ip}}] members [{{appdb_members}}]"
+
+- name: install ops manager web via rpm
+  become: true
+  yum:
+    name: "https://downloads.mongodb.com/on-prem-mms/rpm/mongodb-mms-{{opsmgr_version}}.x86_64.rpm"
+    state: present
+
+- name: replace mongod.pid to mongod-oplog.pid in mongod-oplog.conf file
+  become: true
+  replace:
+    path: /opt/mongodb/mms/conf/conf-mms.properties
+    regexp: '^mongo.mongoUri=.+$'
+    replace: 'mongo.mongoUri=mongodb://{{root_username}}:{{root_password}}@{{appdb_members | join(":27000,")}}/?authSource=admin&replicaSet={{replicaset_appdb}}&maxPoolSize=150'
+
+- name: start and enable mongodb-mms service
+  become: true
+  service:
+    name: mongodb-mms
+    state: started
+    enabled: yes

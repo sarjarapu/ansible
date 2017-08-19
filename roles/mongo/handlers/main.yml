@@ -2,35 +2,21 @@
 # handlers file for mongo
 
 - name: start mongod
-  service:
-    name: mongod
-    state: started
   become: true
+  service:
+    name: "{{mongod_service}}"
+    state: started
+    enabled: yes
 
 - name: stop mongod
-  service:
-    name: mongod
-    state: stopped
   become: true
+  service:
+    name: "{{mongod_service}}"
+    state: stopped
 
 - name: restart mongod
+  become: true
   service:
-    name: mongod
+    name: "{{mongod_service}}"
     state: restarted
-  become: true
 
-- name: reboot
-  shell: (sleep 1 && /usr/sbin/reboot &)
-  ignore_errors: true
-  async: 1
-  poll: 0
-  become: true
-
-- name: wait for ssh
-  wait_for:
-    host: "{{ inventory_hostname }}"
-    port: 22
-    delay: 10
-    timeout: 300
-    state: started
-  connection: local

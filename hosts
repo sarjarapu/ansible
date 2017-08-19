@@ -1,16 +1,15 @@
 [local]
 localhost ansible_connection=local ansible_python_interpreter=python
-[ska_ads_s1]
-ec2-54-187-7-100.us-west-2.compute.amazonaws.com
-ec2-54-187-70-100.us-west-2.compute.amazonaws.com
-ec2-54-212-200-148.us-west-2.compute.amazonaws.com
-[ska_ads_s2]
-ec2-34-211-48-245.us-west-2.compute.amazonaws.com
-ec2-54-149-28-150.us-west-2.compute.amazonaws.com
-ec2-54-149-32-241.us-west-2.compute.amazonaws.com
-[ska_ads_c]
-ec2-34-211-48-240.us-west-2.compute.amazonaws.com
-ec2-54-202-184-15.us-west-2.compute.amazonaws.com
-ec2-54-202-92-208.us-west-2.compute.amazonaws.com
-[ska_ads_s]
-ec2-54-187-149-213.us-west-2.compute.amazonaws.com
+
+[ska_opsmgr_appdb]
+ec2-54-214-214-22.us-west-2.compute.amazonaws.com private_dns=ip-172-31-10-191.us-west-2.compute.internal private_ip=172.31.10.191
+ec2-34-209-156-136.us-west-2.compute.amazonaws.com private_dns=ip-172-31-8-65.us-west-2.compute.internal private_ip=172.31.8.65
+ec2-34-209-63-8.us-west-2.compute.amazonaws.com private_dns=ip-172-31-10-56.us-west-2.compute.internal private_ip=172.31.10.56
+
+[ska_opsmgr_oplogdb]
+ec2-34-209-63-8.us-west-2.compute.amazonaws.com private_dns=ip-172-31-10-56.us-west-2.compute.internal private_ip=172.31.10.56
+ec2-34-209-156-136.us-west-2.compute.amazonaws.com private_dns=ip-172-31-8-65.us-west-2.compute.internal private_ip=172.31.8.65
+ec2-54-214-214-22.us-west-2.compute.amazonaws.com private_dns=ip-172-31-10-191.us-west-2.compute.internal private_ip=172.31.10.191
+
+[ska_opsmgr_web]
+ec2-54-214-214-22.us-west-2.compute.amazonaws.com private_dns=ip-172-31-10-191.us-west-2.compute.internal private_ip=172.31.10.191

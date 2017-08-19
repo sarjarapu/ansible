@@ -1,0 +1,103 @@
+---
+
+# - name: provision aws instance for ops manager
+#   hosts: local
+#   tasks:
+#     - include_role:
+#         name: aws
+#         group_name: "opsmgr"
+#         instance_type: "t2.xlarge"
+#       with_items:
+#         - "1"
+#         - "2"
+#         - "3"
+#       loop_control:
+#         loop_var: server_number  
+
+# - name: install mongodb for servers in appdb replicaset
+#   hosts: "ska_opsmgr_appdb"
+#   tasks:
+#     - include_role:
+#         name: mongo
+#       vars:
+#         replset_name: "appdb"
+#         mongo_port: "27000"
+#         mongod_config_path: "/etc/mongod.conf"
+#         bind_ip: "{{private_ip}}"
+
+# - name: create appdb replicaset
+#   hosts: "ska_opsmgr_appdb[0]"
+#   vars:
+#     mongo_port: "27000"
+#     bind_ip: "{{private_ip}}"
+#     members: 
+#         - "{{hostvars[groups.ska_opsmgr_appdb[1]].private_dns}}"
+#         - "{{hostvars[groups.ska_opsmgr_appdb[2]].private_dns}}"
+#   tasks:
+#     - include_role:
+#         name: mongo
+#         tasks_from: "initiate.replicaset"
+#     - include_role:
+#         name: mongo
+#         tasks_from: "create.users"
+
+# - name: enable security in the mongod.conf and restart 
+#   hosts: "ska_opsmgr_appdb"
+#   tasks:
+#     - include_role:
+#         name: mongo
+#         tasks_from: "enable.security"
+
+# - name: install mongodb for servers in oplog replicaset
+#   hosts: "ska_opsmgr_oplogdb"
+#   tasks:
+#     - include_role:
+#         name: mongo
+#         tasks_from: "mountdata.copyfiles"
+#       vars:
+#         replset_name: "oplogdb"
+#         mongo_port: "27001"
+#         mongod_config_path: "/etc/mongod-oplog.conf"
+#         bind_ip: "{{private_ip}}"
+#     - name: create oplog service and start it
+#       include_role:
+#         name: opsmanager
+#         tasks_from: "oplog.service"
+
+# - name: create oplogdb replicaset, create users
+#   hosts: "ska_opsmgr_oplogdb[0]"
+#   vars:
+#     mongo_port: "27001"
+#     bind_ip: "{{private_ip}}"
+#     members: 
+#         - "{{hostvars[groups.ska_opsmgr_oplogdb[1]].private_dns}}"
+#         - "{{hostvars[groups.ska_opsmgr_oplogdb[2]].private_dns}}"
+#   tasks:
+#     - include_role:
+#         name: mongo
+#         tasks_from: "initiate.replicaset"
+#     - include_role:
+#         name: mongo
+#         tasks_from: "create.users"
+
+# - name: enable security in the mongod-oplog.conf and restart 
+#   hosts: "ska_opsmgr_oplogdb"
+#   vars:
+#     mongod_config_path: "/etc/mongod-oplog.conf"
+#     mongod_service: "mongod-oplog"
+#   tasks:
+#     - include_role:
+#         name: mongo
+#         tasks_from: "enable.security"
+
+- name: install and configure ops manager web
+  hosts: "ska_opsmgr_web"
+  vars:
+    appdb_members: 
+        - "{{hostvars[groups.ska_opsmgr_appdb[0]].private_dns}}"
+        - "{{hostvars[groups.ska_opsmgr_appdb[1]].private_dns}}"
+        - "{{hostvars[groups.ska_opsmgr_appdb[2]].private_dns}}"
+  tasks:
+    - include_role:
+        name: opsmanager
+        tasks_from: web

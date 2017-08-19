@@ -1,55 +1,30 @@
 ---
-# - name: add mongodb-{{ mongo_version[:-3] }} to yum repo 
-#   yum_repository: 
-#     name: "mongodb-{{ mongo_version[:-3] }}"
-#     file: "mongodb-{{ mongo_version[:-3] }}"
-#     description: MongoDB Repository
-#     baseurl: http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/
-#     gpgcheck: no
-#     enabled: yes
-#   become: true
-#   when: mongo_version | version_compare('2.4.14', operator='le', strict=True)
+- name: print the hostname, ip address
+  debug: msg="private_dns [{{private_dns}}] private_ip [{{private_ip}}]"
 
-# - name: install mongodb ce {{ mongo_version }}
-#   yum: 
-#     name: "{{item}}-{{ mongo_version }}"
-#     state: present
-#     exclude: "mongodb-org,mongodb-org-server"
-#   become: true
-#   with_items: 
-#     - "mongo-10gen"
-#     - "mongo-10gen-server"
-#   when: mongo_version | version_compare('2.4.14', operator='le', strict=True)
+- name: print the replSet, data, log and config paths
+  debug: msg="replset_name [{{ replset_name }}]; data_folder [{{data_folder}}]; log_path [{{log_path}}]; mongo_port [{{mongo_port}}]; mongod_config_path [{{mongod_config_path}}]; bind_ip [{{bind_ip}}]"
 
-# - name: check for existence of {{ data_folder }}/db folder
-#   stat: 
-#     path: "{{ data_folder }}/db"
-#   register: data_folder_check
-
-# - name: create the data folder and start mongod
-#   file: 
-#     path: "{{ item }}"
-#     owner: mongod
-#     group: mongod
-#     state: directory
-#     recurse: yes
-#   become: true
-#   with_items:
-#     - "{{ data_folder }}"
-#     - "{{ data_folder }}/db"
-#   when: data_folder_check.stat.exists == False
-
-# - name: copy the mongod.conf 
-#   template:
-#     src: "mongod_v{{ mongo_version[:-3] }}.hbs"
-#     dest: /etc/mongod.conf
-#   become: true
-
-- name: disable the selinux
-  selinux:
-    state: disabled
-    policy: targeted
+- name: install xfsprogs and xfsdump
+  yum: 
+    name: "{{item}}"
+    state: present
+  with_items:
+    - xfsprogs
+    - xfsdump
+    - curl
   become: true
-  # notify: 
-  #   - reboot
-  #   - wait for ssh
+
+- include: create.swap.yml
+- include: install.mongo.yml
+- include: mountdata.copyfiles.yml
+- include: configure.system.yml # system reboot at the end 
+
+- name: start mongod service
+  become: true
+  service:
+    name: mongod
+    state: started
+    enabled: yes
+    
+## - include: enable.security.yml

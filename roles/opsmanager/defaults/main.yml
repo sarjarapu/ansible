@@ -1,0 +1,10 @@
+---
+# defaults file for opsmanager
+opsmgr_version: "3.4.7.479-1"
+replicaset_appdb: "appdb"
+replicaset_oplogdb: "oplogdb"
+port_appdb: "27000"
+port_oplogdb: "27001"
+data_folder: "/data"
+root_username: "superuser"
+root_password: "password"

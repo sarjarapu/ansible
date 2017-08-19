@@ -1,5 +1,0 @@
----
-- hosts: localhost
-  ssh_user: root
-  roles:
-    - aws-mongo
