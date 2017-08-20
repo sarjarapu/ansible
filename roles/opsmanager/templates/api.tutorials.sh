@@ -31,4 +31,5 @@ curl -u "shyam.arjarapu@10gen.com:0c72df21-3154-46d6-9db2-2de40d496ce7" -H "Cont
 curl -u "shyam.arjarapu@10gen.com:0c72df21-3154-46d6-9db2-2de40d496ce7" "http://ec2-54-214-214-22.us-west-2.compute.amazonaws.com:8080/api/public/v1.0/groups/5998d2fcbba0ea27746e067d/automationConfig" --digest -i
 
 # Send the updated automation configuration.
-curl -u "shyam.arjarapu@10gen.com:0c72df21-3154-46d6-9db2-2de40d496ce7" -H "Content-Type: application/json" "http://ec2-54-214-214-22.us-west-2.compute.amazonaws.com:8080/api/public/v1.0/groups/5998d2fcbba0ea27746e067d/automationConfig" --digest -i -X PUT --data @/Users/shyamarjarapu/Code/work/git-hub/sarjarapu/ansible/roles/opsmanager/templates/automation.config
+curl -u "shyam.arjarapu@10gen.com:0c72df21-3154-46d6-9db2-2de40d496ce7" -H "Content-Type: application/json" "http://ec2-54-214-214-22.us-west-2.compute.amazonaws.com:8080/api/public/v1.0/groups/5998d2fcbba0ea27746e067d/automationConfig" --digest -i -X PUT --data @/Users/shyamarjarapu/Code/work/git-hub/sarjarapu/ansible/roles/opsmanager/templates/automation.config.json
+
