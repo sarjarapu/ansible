@@ -40,9 +40,9 @@
               "replication": {
                   "replSetName": "rs1"
               },
-				  "sharding": {
-				     "clusterRole": "shardsvr"
-				  }
+              "sharding": {
+                 "clusterRole": "shardsvr"
+              }
           }
       },
       {
@@ -69,9 +69,9 @@
               "replication": {
                   "replSetName": "rs1"
               },
-				  "sharding": {
-				     "clusterRole": "shardsvr"
-				  }
+              "sharding": {
+                 "clusterRole": "shardsvr"
+              }
           }
       },
       {
@@ -98,9 +98,9 @@
               "replication": {
                   "replSetName": "rs1"
               },
-				  "sharding": {
-				     "clusterRole": "shardsvr"
-				  }
+              "sharding": {
+                 "clusterRole": "shardsvr"
+              }
           }
       },
 
@@ -128,9 +128,9 @@
               "replication": {
                   "replSetName": "rs2"
               },
-				  "sharding": {
-				     "clusterRole": "shardsvr"
-				  }
+              "sharding": {
+                 "clusterRole": "shardsvr"
+              }
           }
       },
       {
@@ -157,9 +157,9 @@
               "replication": {
                   "replSetName": "rs2"
               },
-				  "sharding": {
-				     "clusterRole": "shardsvr"
-				  }
+              "sharding": {
+                 "clusterRole": "shardsvr"
+              }
           }
       },
       {
@@ -186,9 +186,9 @@
               "replication": {
                   "replSetName": "rs2"
               },
-				  "sharding": {
-				     "clusterRole": "shardsvr"
-				  }
+              "sharding": {
+                 "clusterRole": "shardsvr"
+              }
           }
       },
 
@@ -213,12 +213,9 @@
                   "path": "/data/mongodb.log",
                   "destination": "file"
               },
-              "replication": {
-                  "replSetName": "rscfg"
-              },
-				  "sharding": {
-				     "clusterRole": "configsvr"
-				  }
+              "sharding": {
+                 "clusterRole": "configsvr"
+              }
           }
       },
       {
@@ -242,12 +239,9 @@
                   "path": "/data/mongodb.log",
                   "destination": "file"
               },
-              "replication": {
-                  "replSetName": "rscfg"
-              },
-				  "sharding": {
-				     "clusterRole": "configsvr"
-				  }
+              "sharding": {
+                 "clusterRole": "configsvr"
+              }
           }
       },
       {
@@ -271,12 +265,9 @@
                   "path": "/data/mongodb.log",
                   "destination": "file"
               },
-              "replication": {
-                  "replSetName": "rscfg"
-              },
-				  "sharding": {
-				     "clusterRole": "configsvr"
-				  }
+              "sharding": {
+                 "clusterRole": "configsvr"
+              }
           }
       }
     ],
@@ -343,40 +334,8 @@
             "slaveDelay": 0,
             "hidden": false,
             "arbiterOnly": false
-         },
-		
-      {
-        "_id": "rscfg",
-        "members": [
-         {
-            "_id": 0,
-            "host": "ip-172-31-9-83.us-west-2.compute.internal",
-            "priority": 1,
-            "votes": 1,
-            "slaveDelay": 0,
-            "hidden": false,
-            "arbiterOnly": false
-         },
-         {
-            "_id": 1,
-            "host": "ip-172-31-15-12.us-west-2.compute.internal",
-            "priority": 1,
-            "votes": 1,
-            "slaveDelay": 0,
-            "hidden": false,
-            "arbiterOnly": false
-         },
-         {
-            "_id": 2,
-            "host": "ip-172-31-14-62.us-west-2.compute.internal",
-            "priority": 1,
-            "votes": 1,
-            "slaveDelay": 0,
-            "hidden": false,
-            "arbiterOnly": false
          }
-        ]
-      },
+		]}
 	 ],
     "sharding": [
       {
