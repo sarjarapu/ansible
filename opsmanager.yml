@@ -90,14 +90,22 @@
 #         name: mongo
 #         tasks_from: "enable.security"
 
-- name: install and configure ops manager web
-  hosts: "ska_opsmgr_web"
-  vars:
-    appdb_members: 
-        - "{{hostvars[groups.ska_opsmgr_appdb[0]].private_dns}}"
-        - "{{hostvars[groups.ska_opsmgr_appdb[1]].private_dns}}"
-        - "{{hostvars[groups.ska_opsmgr_appdb[2]].private_dns}}"
+# - name: install and configure ops manager web
+#   hosts: "ska_opsmgr_web"
+#   vars:
+#     appdb_members: 
+#         - "{{hostvars[groups.ska_opsmgr_appdb[0]].private_dns}}"
+#         - "{{hostvars[groups.ska_opsmgr_appdb[1]].private_dns}}"
+#         - "{{hostvars[groups.ska_opsmgr_appdb[2]].private_dns}}"
+#   tasks:
+#     - include_role:
+#         name: opsmanager
+#         tasks_from: web
+
+
+- name: install automation agent in mongo servers
+  hosts: "ska_ors_mongo"
   tasks:
     - include_role:
         name: opsmanager
-        tasks_from: web
+        tasks_from: automation.agent

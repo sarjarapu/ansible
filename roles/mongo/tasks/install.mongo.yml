@@ -16,23 +16,3 @@
   yum: 
     name: "mongodb-org-{{ mongo_version }}"
     state: present
-
-# - name: install mongodb mms automation agent
-#   become: true
-#   yum:
-#     name: https://cloud.mongodb.com/download/agent/automation/mongodb-mms-automation-agent-manager-4.0.0.2153-1.x86_64.rhel7.rpm
-#     state: present
-
-# - name: edit mmsGroupId value in /etc/mongodb-mms/automation-agent.config file
-#   become: true
-#   replace:
-#     path: /etc/mongodb-mms/automation-agent.config
-#     regexp: '^mmsGroupId.+$'
-#     replace: 'mmsGroupId=57ed2847d383ad59488d4ea5'
-
-# - name: edit mmsApiKey value in /etc/mongodb-mms/automation-agent.config file
-#   become: true
-#   replace:
-#     path: /etc/mongodb-mms/automation-agent.config
-#     regexp: '^mmsApiKey.+$'
-#     replace: 'mmsApiKey=597aa2e7df9db11b20d7e8f035460803720919c9b74f5b72b7074afd'

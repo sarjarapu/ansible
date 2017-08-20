@@ -1,0 +1,52 @@
+---
+- name: install mongodb mms automation agent
+  become: true
+  yum:
+    name: "{{opsmanager_uri}}/download/agent/automation/mongodb-mms-automation-agent-manager-{{automation_agent_version}}.rpm"
+    state: present
+
+- name: stop mongodb-mms-automation-agent.service
+  become: true
+  service:
+    name: mongodb-mms-automation-agent
+    state: stopped
+    enabled: yes
+
+
+- name: edit mmsGroupId value in /etc/mongodb-mms/automation-agent.config file
+  become: true
+  replace:
+    path: /etc/mongodb-mms/automation-agent.config
+    regexp: '^mmsGroupId.+$'
+    replace: 'mmsGroupId=5998d2fcbba0ea27746e067d'
+
+- name: edit mmsApiKey value in /etc/mongodb-mms/automation-agent.config file
+  become: true
+  replace:
+    path: /etc/mongodb-mms/automation-agent.config
+    regexp: '^mmsApiKey.+$'
+    replace: 'mmsApiKey=747862e5601e5eda9ff73077cb69d331'
+
+- name: edit mmsBaseUrl value in /etc/mongodb-mms/automation-agent.config file
+  become: true
+  replace:
+    path: /etc/mongodb-mms/automation-agent.config
+    regexp: '^mmsBaseUrl.+$'
+    replace: 'mmsBaseUrl={{opsmanager_uri}}'
+
+
+- name: create the {{ data_folder }} folder
+  become: true
+  file: 
+    path: "{{ data_folder }}"
+    state: directory
+    owner: mongod
+    group: mongod
+    mode: 0755
+
+- name: start and enable mongodb-mms-automation-agent.service
+  become: true
+  service:
+    name: mongodb-mms-automation-agent
+    state: started
+    enabled: yes
