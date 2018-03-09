@@ -1,18 +1,10 @@
 ---
     
-- name: set vm.swappiness to 60
+- name: set vm.swappiness to 10
   become: true
   sysctl:
     name: vm.swappiness
-    value: 60
-    state: present
-    sysctl_set: yes
-
-- name: set vm.vfs_cache_pressure to 100
-  become: true
-  sysctl:
-    name: vm.vfs_cache_pressure
-    value: 100
+    value: 10
     state: present
     sysctl_set: yes
 
@@ -55,6 +47,41 @@
     state: disabled
     policy: targeted
 
+- name: configure the ulimits for the mongod
+  become: true
+  template:
+    src: "99-mongodb-nproc.conf"
+    dest: "/etc/security/limits.d/99-mongodb-nproc.conf"
+    mode: 0644
+
+- name: create script file for disable the transparent huge pages
+  become: true
+  template:
+    src: "disable-transparent-hugepages"
+    dest: "/etc/init.d/disable-transparent-hugepages"
+    mode: 0755
+
+- name: disable the transparent huge pages
+  become: true
+  service:
+    name: "disable-transparent-hugepages"
+    state: started
+    enabled: true
+
+- name: create script file for setting the readahead values for the mongodb devices
+  become: true
+  template:
+    src: "set-readahead-values"
+    dest: "/etc/init.d/set-readahead-values"
+    mode: 0755
+
+- name: configure the read ahead values for the mongodb devices
+  become: true
+  service:
+    name: "set-readahead-values"
+    state: started
+    enabled: true
+
 - name: reboot
   become: true
   shell: (sleep 1 && /usr/sbin/reboot &)
@@ -67,7 +94,7 @@
     host: "{{ inventory_hostname }}"
     port: 22
     delay: 10
-    timeout: 300
+    timeout: "{{ssh_wait_timeout}}"
     state: started
   connection: local
 

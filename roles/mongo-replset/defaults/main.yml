@@ -1,0 +1,4 @@
+---
+mongo_port: "28000"
+root_username: "superuser"
+root_password: "password"

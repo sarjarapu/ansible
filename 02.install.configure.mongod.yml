@@ -1,0 +1,16 @@
+---
+- name: install and configure mongodb in group
+  hosts: "ska_mdb_rs1"
+  roles:
+    - role: mongo
+      mongo_version: "3.6.2"
+      tag_name: "ska_mdb"
+      replset_name: "rs"
+      mongo_port: "28000"
+
+- name: create mongodb replicaset
+  hosts: "ska_mdb_rs1[0]"
+  roles:
+    - role: "mongo-replset"
+      replset_name: "rs"
+      group_name: "ska_mdb_rs1"

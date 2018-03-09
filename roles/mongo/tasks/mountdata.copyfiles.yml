@@ -83,7 +83,7 @@
 - name: copy the {{mongod_config_path}}
   become: true
   template:
-    src: "mongod_v{{ mongo_version[0:3] }}.hbs"
+    src: "mongod.conf"
     dest: "{{mongod_config_path}}"
     mode: 0644
   when: check_folder_db.stat.exists == False

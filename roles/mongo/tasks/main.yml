@@ -15,10 +15,10 @@
     - curl
   become: true
 
-- include: create.swap.yml
-- include: install.mongo.yml
-- include: mountdata.copyfiles.yml
-- include: configure.system.yml # system reboot at the end 
+- import_tasks: create.swap.yml
+- import_tasks: install.mongo.yml
+- import_tasks: mountdata.copyfiles.yml
+- import_tasks: configure.system.yml # system reboot at the end 
 
 - name: start mongod service
   become: true
@@ -26,5 +26,3 @@
     name: mongod
     state: started
     enabled: yes
-    
-## - include: enable.security.yml
