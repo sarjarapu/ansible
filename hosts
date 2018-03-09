@@ -1,27 +1,2 @@
 [local]
 localhost ansible_connection=local ansible_python_interpreter=python
-
-[ska_opsmgr_appdb]
-ec2-54-214-214-22.us-west-2.compute.amazonaws.com private_dns=ip-172-31-10-191.us-west-2.compute.internal private_ip=172.31.10.191
-ec2-34-209-156-136.us-west-2.compute.amazonaws.com private_dns=ip-172-31-8-65.us-west-2.compute.internal private_ip=172.31.8.65
-ec2-34-209-63-8.us-west-2.compute.amazonaws.com private_dns=ip-172-31-10-56.us-west-2.compute.internal private_ip=172.31.10.56
-
-[ska_opsmgr_oplogdb]
-ec2-34-209-63-8.us-west-2.compute.amazonaws.com private_dns=ip-172-31-10-56.us-west-2.compute.internal private_ip=172.31.10.56
-ec2-34-209-156-136.us-west-2.compute.amazonaws.com private_dns=ip-172-31-8-65.us-west-2.compute.internal private_ip=172.31.8.65
-ec2-54-214-214-22.us-west-2.compute.amazonaws.com private_dns=ip-172-31-10-191.us-west-2.compute.internal private_ip=172.31.10.191
-
-[ska_opsmgr_web]
-ec2-54-214-214-22.us-west-2.compute.amazonaws.com private_dns=ip-172-31-10-191.us-west-2.compute.internal private_ip=172.31.10.191
-
-[ska_ors_mongo]
-ec2-34-209-149-136.us-west-2.compute.amazonaws.com private_dns=ip-172-31-14-42.us-west-2.compute.internal private_ip=172.31.14.42
-ec2-34-212-138-252.us-west-2.compute.amazonaws.com private_dns=ip-172-31-4-157.us-west-2.compute.internal private_ip=172.31.4.157
-ec2-34-212-139-244.us-west-2.compute.amazonaws.com private_dns=ip-172-31-10-97.us-west-2.compute.internal private_ip=172.31.10.97
-ec2-34-212-178-147.us-west-2.compute.amazonaws.com private_dns=ip-172-31-12-64.us-west-2.compute.internal private_ip=172.31.12.64
-ec2-54-187-73-229.us-west-2.compute.amazonaws.com private_dns=ip-172-31-3-186.us-west-2.compute.internal private_ip=172.31.3.186
-ec2-54-200-55-167.us-west-2.compute.amazonaws.com private_dns=ip-172-31-9-101.us-west-2.compute.internal private_ip=172.31.9.101
-ec2-54-200-178-114.us-west-2.compute.amazonaws.com private_dns=ip-172-31-9-83.us-west-2.compute.internal private_ip=172.31.9.83
-ec2-54-212-232-111.us-west-2.compute.amazonaws.com private_dns=ip-172-31-15-12.us-west-2.compute.internal private_ip=172.31.15.12
-ec2-54-214-225-164.us-west-2.compute.amazonaws.com private_dns=ip-172-31-14-62.us-west-2.compute.internal private_ip=172.31.14.62
-ec2-54-244-216-82.us-west-2.compute.amazonaws.com private_dns=ip-172-31-5-60.us-west-2.compute.internal private_ip=172.31.5.60

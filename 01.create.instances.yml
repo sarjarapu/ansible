@@ -1,0 +1,18 @@
+---
+- name: create aws instance for replicaset 
+  hosts: local
+  tasks:
+    - include_role:
+        name: aws
+      vars:
+        server_number: "{{ role_item }}"
+        instance_type: "t2.micro"
+        tag_name: "ska_mdb"
+        group_name: "rs1"
+        data_vol_size: 100
+      with_items: 
+        - '01'
+        - '02'
+        - '03'
+      loop_control:
+        loop_var: "role_item"

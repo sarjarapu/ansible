@@ -10,8 +10,8 @@
         group_name: "s{{ role_item[0] }}"
         server_number: "{{ role_item[1] }}"
         data_vol_size: 200
-      with_nested:
-        - [1, 2]
+      with_nested:3
+        - [1, 2, 3]
         - [1, 2, 3]
       loop_control:
         loop_var: "role_item"

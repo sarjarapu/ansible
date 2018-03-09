@@ -1,15 +1,2 @@
 ---
 ansible_ssh_user: ec2-user
-deployment:
-  replicate_set:
-    - "ska_adt_s11"
-    - "ska_adt_s12"
-    - "ska_adt_s13"
-  source_servers:
-    - "ska_ads_s11"
-    - "ska_ads_s12"
-    - "ska_ads_s13"
-  target_servers:
-    - "ska_adt_s11"
-    - "ska_adt_s12"
-    - "ska_adt_s13"

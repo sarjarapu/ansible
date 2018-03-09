@@ -7,7 +7,7 @@
 			  },
 			  "operationProfiling": {},
 			  "replication": {
-					"replSetName": "rs_0"
+					"replSetName": "scapi_rs_0"
 			  },
 			  "storage": {
 					"dbPath": "/data/scapi_rs_01"
@@ -17,7 +17,7 @@
 					"path": "/data/scapi_rs_01/mongodb.log"
 			  }
 		 },
-		 "authSchemaVersion": 5,
+		 "authSchemaVersion": 3,
 		 "hostname": "ip-172-31-14-42.us-west-2.compute.internal",
 		 "logRotate": {
 			  "sizeThresholdMB": 1000,
@@ -25,7 +25,7 @@
 		 },
 		 "name": "scapi_rs_01",
 		 "processType": "mongod",
-		 "version": "3.4.7"
+		 "version": "2.6.11"
 	},
 	{
 		 "args2_6": {
@@ -44,7 +44,7 @@
 					"path": "/data/scapi_rs_02/mongodb.log"
 			  }
 		 },
-		 "authSchemaVersion": 5,
+		 "authSchemaVersion": 3,
 		 "hostname": "ip-172-31-4-157.us-west-2.compute.internal",
 		 "logRotate": {
 			  "sizeThresholdMB": 1000,
@@ -52,7 +52,7 @@
 		 },
 		 "name": "scapi_rs_02",
 		 "processType": "mongod",
-		 "version": "3.4.7"
+		 "version": "2.6.11"
 	},
 	{
 		 "args2_6": {
@@ -71,7 +71,7 @@
 					"path": "/data/scapi_rs_03/mongodb.log"
 			  }
 		 },
-		 "authSchemaVersion": 5,
+		 "authSchemaVersion": 3,
 		 "hostname": "ip-172-31-10-97.us-west-2.compute.internal",
 		 "logRotate": {
 			  "sizeThresholdMB": 1000,
@@ -79,7 +79,7 @@
 		 },
 		 "name": "scapi_rs_03",
 		 "processType": "mongod",
-		 "version": "3.4.7"
+		 "version": "2.6.11"
 	},
 	{
 		 "args2_6": {
@@ -98,7 +98,7 @@
 					"path": "/data/scapi_rs_11/mongodb.log"
 			  }
 		 },
-		 "authSchemaVersion": 5,
+		 "authSchemaVersion": 3,
 		 "hostname": "ip-172-31-12-64.us-west-2.compute.internal",
 		 "logRotate": {
 			  "sizeThresholdMB": 1000,
@@ -106,7 +106,7 @@
 		 },
 		 "name": "scapi_rs_11",
 		 "processType": "mongod",
-		 "version": "3.4.7"
+		 "version": "2.6.11"
 	},
 	{
 		 "args2_6": {
@@ -125,7 +125,7 @@
 					"path": "/data/scapi_rs_12/mongodb.log"
 			  }
 		 },
-		 "authSchemaVersion": 5,
+		 "authSchemaVersion": 3,
 		 "hostname": "ip-172-31-3-186.us-west-2.compute.internal",
 		 "logRotate": {
 			  "sizeThresholdMB": 1000,
@@ -133,7 +133,7 @@
 		 },
 		 "name": "scapi_rs_12",
 		 "processType": "mongod",
-		 "version": "3.4.7"
+		 "version": "2.6.11"
 	},
 	{
 		 "args2_6": {
@@ -152,7 +152,7 @@
 					"path": "/data/scapi_rs_13/mongodb.log"
 			  }
 		 },
-		 "authSchemaVersion": 5,
+		 "authSchemaVersion": 3,
 		 "hostname": "ip-172-31-9-101.us-west-2.compute.internal",
 		 "logRotate": {
 			  "sizeThresholdMB": 1000,
@@ -160,7 +160,7 @@
 		 },
 		 "name": "scapi_rs_13",
 		 "processType": "mongod",
-		 "version": "3.4.7"
+		 "version": "2.6.11"
 	},
 	{
 		 "args2_6": {
@@ -168,12 +168,6 @@
 					"port": 27019
 			  },
 			  "operationProfiling": {},
-			  "replication": {
-					"replSetName": "scapi_csrs"
-			  },
-			  "sharding": {
-					"clusterRole": "configsvr"
-			  },
 			  "storage": {
 					"dbPath": "/data/scapi_csrs_1"
 			  },
@@ -182,7 +176,7 @@
 					"path": "/data/scapi_csrs_1/mongodb.log"
 			  }
 		 },
-		 "authSchemaVersion": 5,
+		 "authSchemaVersion": 3,
 		 "hostname": "ip-172-31-9-83.us-west-2.compute.internal",
 		 "logRotate": {
 			  "sizeThresholdMB": 1000,
@@ -190,7 +184,7 @@
 		 },
 		 "name": "scapi_csrs_1",
 		 "processType": "mongod",
-		 "version": "3.4.7"
+		 "version": "2.6.11"
 	},
 	{
 		 "args2_6": {
@@ -198,12 +192,6 @@
 					"port": 27019
 			  },
 			  "operationProfiling": {},
-			  "replication": {
-					"replSetName": "scapi_csrs"
-			  },
-			  "sharding": {
-					"clusterRole": "configsvr"
-			  },
 			  "storage": {
 					"dbPath": "/data/scapi_csrs_2"
 			  },
@@ -212,7 +200,7 @@
 					"path": "/data/scapi_csrs_2/mongodb.log"
 			  }
 		 },
-		 "authSchemaVersion": 5,
+		 "authSchemaVersion": 3,
 		 "hostname": "ip-172-31-15-12.us-west-2.compute.internal",
 		 "logRotate": {
 			  "sizeThresholdMB": 1000,
@@ -220,7 +208,7 @@
 		 },
 		 "name": "scapi_csrs_2",
 		 "processType": "mongod",
-		 "version": "3.4.7"
+		 "version": "2.6.11"
 	},
 	{
 		 "args2_6": {
@@ -228,12 +216,6 @@
 					"port": 27019
 			  },
 			  "operationProfiling": {},
-			  "replication": {
-					"replSetName": "scapi_csrs"
-			  },
-			  "sharding": {
-					"clusterRole": "configsvr"
-			  },
 			  "storage": {
 					"dbPath": "/data/scapi_csrs_3"
 			  },
@@ -242,7 +224,7 @@
 					"path": "/data/scapi_csrs_3/mongodb.log"
 			  }
 		 },
-		 "authSchemaVersion": 5,
+		 "authSchemaVersion": 3,
 		 "hostname": "ip-172-31-14-62.us-west-2.compute.internal",
 		 "logRotate": {
 			  "sizeThresholdMB": 1000,
@@ -250,7 +232,7 @@
 		 },
 		 "name": "scapi_csrs_3",
 		 "processType": "mongod",
-		 "version": "3.4.7"
+		 "version": "2.6.11"
 	},
 	{
 		 "args2_6": {
@@ -263,7 +245,7 @@
 					"path": "/data/scapi_mongos_1/mongodb.log"
 			  }
 		 },
-		 "authSchemaVersion": 5,
+		 "authSchemaVersion": 3,
 		 "cluster": "scapi",
 		 "hostname": "ip-172-31-5-60.us-west-2.compute.internal",
 		 "logRotate": {
@@ -272,7 +254,7 @@
 		 },
 		 "name": "scapi_mongos_1",
 		 "processType": "mongos",
-		 "version": "3.4.7"
+		 "version": "2.6.11"
 	}
 ],
 "replicaSets": [
@@ -339,38 +321,6 @@
 					"votes": 1
 			  }
 		 ]
-	},
-	{
-		 "_id": "scapi_csrs",
-		 "members": [
-			  {
-					"_id": 0,
-					"arbiterOnly": false,
-					"hidden": false,
-					"host": "scapi_csrs_1",
-					"priority": 1,
-					"slaveDelay": 0,
-					"votes": 1
-			  },
-			  {
-					"_id": 1,
-					"arbiterOnly": false,
-					"hidden": false,
-					"host": "scapi_csrs_2",
-					"priority": 1,
-					"slaveDelay": 0,
-					"votes": 1
-			  },
-			  {
-					"_id": 2,
-					"arbiterOnly": false,
-					"hidden": false,
-					"host": "scapi_csrs_3",
-					"priority": 1,
-					"slaveDelay": 0,
-					"votes": 1
-			  }
-		 ]
 	}
 ],
 "roles": [],
@@ -416,8 +366,11 @@
 		 ],
 		 "name": "scapi",
 		 "managedSharding": false,
-		 "configServer": [],
-		 "configServerReplica": "scapi_csrs",
+		 "configServer": [
+			 "scapi_csrs_1",
+			 "scapi_csrs_2",
+			 "scapi_csrs_3"
+		 ],
 		 "collections": [],
 		 "tags": []
 	}

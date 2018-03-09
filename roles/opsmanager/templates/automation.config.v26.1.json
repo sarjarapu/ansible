@@ -1,15 +1,3 @@
-HTTP/1.1 401 Unauthorized
-Date: Thu, 24 Aug 2017 19:57:22 GMT
-WWW-Authenticate: Digest realm="MMS Public API", domain="", nonce="lG/9VDuB0Db3yxFHqMQr/jva/Q2hEFJu", algorithm=MD5, qop="auth", stale=false
-Content-Type: application/json;charset=ISO-8859-1
-Content-Length: 106
-
-HTTP/1.1 200 OK
-Date: Thu, 24 Aug 2017 19:57:22 GMT
-Vary: Accept-Encoding
-Content-Type: application/json
-Transfer-Encoding: chunked
-
 {
   "auth" : {
     "authoritativeSet" : false,
@@ -416,12 +404,12 @@ Transfer-Encoding: chunked
       "replication" : {
         "replSetName" : "scapi_rs_0"
       },
-      "sharding" : {
-        "clusterRole" : "shardsvr"
-      },
       "storage" : {
         "dbPath" : "/data/scapi_rs_01"
       },
+		"sharding": {
+			 "clusterRole": "shardsvr"
+		},
       "systemLog" : {
         "destination" : "file",
         "path" : "/data/scapi_rs_01/mongodb.log"
@@ -435,7 +423,7 @@ Transfer-Encoding: chunked
     },
     "name" : "scapi_rs_01",
     "processType" : "mongod",
-    "version" : "3.2.15"
+    "version" : "2.6.11"
   }, {
     "args2_6" : {
       "net" : {
@@ -445,12 +433,12 @@ Transfer-Encoding: chunked
       "replication" : {
         "replSetName" : "scapi_rs_0"
       },
-      "sharding" : {
-        "clusterRole" : "shardsvr"
-      },
       "storage" : {
         "dbPath" : "/data/scapi_rs_02"
       },
+		"sharding": {
+			 "clusterRole": "shardsvr"
+		},
       "systemLog" : {
         "destination" : "file",
         "path" : "/data/scapi_rs_02/mongodb.log"
@@ -464,7 +452,7 @@ Transfer-Encoding: chunked
     },
     "name" : "scapi_rs_02",
     "processType" : "mongod",
-    "version" : "3.2.15"
+    "version" : "2.6.11"
   }, {
     "args2_6" : {
       "net" : {
@@ -474,12 +462,12 @@ Transfer-Encoding: chunked
       "replication" : {
         "replSetName" : "scapi_rs_0"
       },
-      "sharding" : {
-        "clusterRole" : "shardsvr"
-      },
       "storage" : {
         "dbPath" : "/data/scapi_rs_03"
       },
+		"sharding": {
+			 "clusterRole": "shardsvr"
+		},
       "systemLog" : {
         "destination" : "file",
         "path" : "/data/scapi_rs_03/mongodb.log"
@@ -493,7 +481,7 @@ Transfer-Encoding: chunked
     },
     "name" : "scapi_rs_03",
     "processType" : "mongod",
-    "version" : "3.2.15"
+    "version" : "2.6.11"
   }, {
     "args2_6" : {
       "net" : {
@@ -503,12 +491,12 @@ Transfer-Encoding: chunked
       "replication" : {
         "replSetName" : "scapi_rs_1"
       },
-      "sharding" : {
-        "clusterRole" : "shardsvr"
-      },
       "storage" : {
         "dbPath" : "/data/scapi_rs_11"
       },
+		"sharding": {
+			 "clusterRole": "shardsvr"
+		},
       "systemLog" : {
         "destination" : "file",
         "path" : "/data/scapi_rs_11/mongodb.log"
@@ -522,7 +510,7 @@ Transfer-Encoding: chunked
     },
     "name" : "scapi_rs_11",
     "processType" : "mongod",
-    "version" : "3.2.15"
+    "version" : "2.6.11"
   }, {
     "args2_6" : {
       "net" : {
@@ -532,12 +520,12 @@ Transfer-Encoding: chunked
       "replication" : {
         "replSetName" : "scapi_rs_1"
       },
-      "sharding" : {
-        "clusterRole" : "shardsvr"
-      },
       "storage" : {
         "dbPath" : "/data/scapi_rs_12"
       },
+		"sharding": {
+			 "clusterRole": "shardsvr"
+		},
       "systemLog" : {
         "destination" : "file",
         "path" : "/data/scapi_rs_12/mongodb.log"
@@ -551,7 +539,7 @@ Transfer-Encoding: chunked
     },
     "name" : "scapi_rs_12",
     "processType" : "mongod",
-    "version" : "3.2.15"
+    "version" : "2.6.11"
   }, {
     "args2_6" : {
       "net" : {
@@ -561,12 +549,12 @@ Transfer-Encoding: chunked
       "replication" : {
         "replSetName" : "scapi_rs_1"
       },
-      "sharding" : {
-        "clusterRole" : "shardsvr"
-      },
       "storage" : {
         "dbPath" : "/data/scapi_rs_13"
       },
+		"sharding": {
+			 "clusterRole": "shardsvr"
+		},
       "systemLog" : {
         "destination" : "file",
         "path" : "/data/scapi_rs_13/mongodb.log"
@@ -580,19 +568,19 @@ Transfer-Encoding: chunked
     },
     "name" : "scapi_rs_13",
     "processType" : "mongod",
-    "version" : "3.2.15"
+    "version" : "2.6.11"
   }, {
     "args2_6" : {
       "net" : {
         "port" : 27019
       },
       "operationProfiling" : { },
-      "sharding" : {
-        "clusterRole" : "configsvr"
-      },
       "storage" : {
         "dbPath" : "/data/scapi_csrs_1"
       },
+		"sharding": {
+			 "clusterRole": "configsvr"
+		},
       "systemLog" : {
         "destination" : "file",
         "path" : "/data/scapi_csrs_1/mongodb.log"
@@ -606,19 +594,19 @@ Transfer-Encoding: chunked
     },
     "name" : "scapi_csrs_1",
     "processType" : "mongod",
-    "version" : "3.2.15"
+    "version" : "2.6.11"
   }, {
     "args2_6" : {
       "net" : {
         "port" : 27019
       },
       "operationProfiling" : { },
-      "sharding" : {
-        "clusterRole" : "configsvr"
-      },
       "storage" : {
         "dbPath" : "/data/scapi_csrs_2"
       },
+		"sharding": {
+			 "clusterRole": "configsvr"
+		},
       "systemLog" : {
         "destination" : "file",
         "path" : "/data/scapi_csrs_2/mongodb.log"
@@ -632,19 +620,19 @@ Transfer-Encoding: chunked
     },
     "name" : "scapi_csrs_2",
     "processType" : "mongod",
-    "version" : "3.2.15"
+    "version" : "2.6.11"
   }, {
     "args2_6" : {
       "net" : {
         "port" : 27019
       },
       "operationProfiling" : { },
-      "sharding" : {
-        "clusterRole" : "configsvr"
-      },
       "storage" : {
         "dbPath" : "/data/scapi_csrs_3"
       },
+		"sharding": {
+			 "clusterRole": "configsvr"
+		},
       "systemLog" : {
         "destination" : "file",
         "path" : "/data/scapi_csrs_3/mongodb.log"
@@ -658,7 +646,7 @@ Transfer-Encoding: chunked
     },
     "name" : "scapi_csrs_3",
     "processType" : "mongod",
-    "version" : "3.2.15"
+    "version" : "2.6.11"
   }, {
     "args2_6" : {
       "net" : {
@@ -679,29 +667,29 @@ Transfer-Encoding: chunked
     },
     "name" : "scapi_mongos_1",
     "processType" : "mongos",
-    "version" : "3.2.15"
+    "version" : "2.6.11"
   }, {
-    "args2_6" : {
-      "net" : {
-        "port" : 27017
-      },
-      "operationProfiling" : { },
-      "systemLog" : {
-        "destination" : "file",
-        "path" : "/data/scapi_mongos_2/mongodb.log"
-      }
-    },
-    "authSchemaVersion" : 3,
-    "cluster" : "scapi",
-    "hostname" : "ip-172-31-14-62.us-west-2.compute.internal",
-    "logRotate" : {
-      "sizeThresholdMB" : 1000.0,
-      "timeThresholdHrs" : 24
-    },
-    "name" : "scapi_mongos_2",
-    "processType" : "mongos",
-    "version" : "3.2.15"
-  } ],
+	"args2_6" : {
+	  "net" : {
+		 "port" : 27017
+	  },
+	  "operationProfiling" : { },
+	  "systemLog" : {
+		 "destination" : "file",
+		 "path" : "/data/scapi_mongos_2/mongodb.log"
+	  }
+	},
+	"authSchemaVersion" : 3,
+	"cluster" : "scapi",
+	"hostname" : "ip-172-31-14-62.us-west-2.compute.internal",
+	"logRotate" : {
+	  "sizeThresholdMB" : 1000.0,
+	  "timeThresholdHrs" : 24
+	},
+	"name" : "scapi_mongos_2",
+	"processType" : "mongos",
+	"version" : "2.6.11"
+ } ],
   "replicaSets" : [ {
     "_id" : "scapi_rs_0",
     "members" : [ {
@@ -760,7 +748,11 @@ Transfer-Encoding: chunked
   "roles" : [ ],
   "sharding" : [ {
     "collections" : [ ],
-    "configServer" : [ "scapi_csrs_1", "scapi_csrs_2", "scapi_csrs_3" ],
+	 "configServer": [
+		 "scapi_csrs_1",
+		 "scapi_csrs_2",
+		 "scapi_csrs_3"
+	 ],
     "managedSharding" : false,
     "name" : "scapi",
     "shards" : [ {
@@ -775,5 +767,5 @@ Transfer-Encoding: chunked
     "tags" : [ ]
   } ],
   "uiBaseUrl" : null,
-  "version" : 33
+  "version" : 21
 }

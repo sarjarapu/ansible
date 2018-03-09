@@ -1,0 +1,821 @@
+{
+	"auth" : {
+	  "authoritativeSet" : false,
+	  "disabled" : true,
+	  "usersDeleted" : [ ],
+	  "usersWanted" : [ ]
+	},
+	"backupVersions" : [ ],
+	"indexConfigs" : [ ],
+	"mongoDbVersions" : [ {
+	  "builds" : [ {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "gitVersion" : "d00c1735675c457f75a12d530bee85421f0c5548",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-2.6.11.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "gitVersion" : "d00c1735675c457f75a12d530bee85421f0c5548",
+		 "platform" : "osx",
+		 "url" : "https://fastdl.mongodb.org/osx/mongodb-osx-x86_64-2.6.11.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "gitVersion" : "d00c1735675c457f75a12d530bee85421f0c5548",
+		 "platform" : "windows",
+		 "url" : "https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2.6.11.zip"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "gitVersion" : "d00c1735675c457f75a12d530bee85421f0c5548",
+		 "platform" : "windows",
+		 "url" : "https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-2.6.11.zip",
+		 "win2008plus" : true
+	  } ],
+	  "name" : "2.6.11"
+	}, {
+	  "builds" : [ {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "gitVersion" : "08352afcca24bfc145240a0fac9d28b978ab77f3",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-3.0.14.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "rhel",
+		 "gitVersion" : "08352afcca24bfc145240a0fac9d28b978ab77f3",
+		 "maxOsVersion" : "6.0",
+		 "minOsVersion" : "5.5",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel55-3.0.14.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "rhel",
+		 "gitVersion" : "08352afcca24bfc145240a0fac9d28b978ab77f3",
+		 "maxOsVersion" : "7.0",
+		 "minOsVersion" : "6.2",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.0.14.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "rhel",
+		 "gitVersion" : "08352afcca24bfc145240a0fac9d28b978ab77f3",
+		 "maxOsVersion" : "8.0",
+		 "minOsVersion" : "7.0",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.0.14.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "suse",
+		 "gitVersion" : "08352afcca24bfc145240a0fac9d28b978ab77f3",
+		 "maxOsVersion" : "12.0",
+		 "minOsVersion" : "11.0",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-suse11-3.0.14.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "debian",
+		 "gitVersion" : "08352afcca24bfc145240a0fac9d28b978ab77f3",
+		 "maxOsVersion" : "8.0",
+		 "minOsVersion" : "7.1",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-debian71-3.0.14.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "ubuntu",
+		 "gitVersion" : "08352afcca24bfc145240a0fac9d28b978ab77f3",
+		 "maxOsVersion" : "13.04",
+		 "minOsVersion" : "12.04",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1204-3.0.14.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "ubuntu",
+		 "gitVersion" : "08352afcca24bfc145240a0fac9d28b978ab77f3",
+		 "maxOsVersion" : "15.04",
+		 "minOsVersion" : "14.04",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1404-3.0.14.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "amazon",
+		 "gitVersion" : "08352afcca24bfc145240a0fac9d28b978ab77f3",
+		 "maxOsVersion" : "",
+		 "minOsVersion" : "2013.03",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-amazon-3.0.14.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "gitVersion" : "08352afcca24bfc145240a0fac9d28b978ab77f3",
+		 "platform" : "osx",
+		 "url" : "https://fastdl.mongodb.org/osx/mongodb-osx-x86_64-3.0.14.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "gitVersion" : "08352afcca24bfc145240a0fac9d28b978ab77f3",
+		 "platform" : "windows",
+		 "url" : "https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-3.0.14.zip"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "gitVersion" : "08352afcca24bfc145240a0fac9d28b978ab77f3",
+		 "platform" : "windows",
+		 "url" : "https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-3.0.14.zip",
+		 "win2008plus" : true
+	  } ],
+	  "name" : "3.0.14"
+	}, {
+	  "builds" : [ {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "gitVersion" : "e11e3c1b9c9ce3f7b4a79493e16f5e4504e01140",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-3.2.15.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "rhel",
+		 "gitVersion" : "e11e3c1b9c9ce3f7b4a79493e16f5e4504e01140",
+		 "maxOsVersion" : "6.0",
+		 "minOsVersion" : "5.5",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel55-3.2.15.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "rhel",
+		 "gitVersion" : "e11e3c1b9c9ce3f7b4a79493e16f5e4504e01140",
+		 "maxOsVersion" : "7.0",
+		 "minOsVersion" : "6.2",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.2.15.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "rhel",
+		 "gitVersion" : "e11e3c1b9c9ce3f7b4a79493e16f5e4504e01140",
+		 "maxOsVersion" : "8.0",
+		 "minOsVersion" : "7.0",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.2.15.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "suse",
+		 "gitVersion" : "e11e3c1b9c9ce3f7b4a79493e16f5e4504e01140",
+		 "maxOsVersion" : "12.0",
+		 "minOsVersion" : "11.0",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-suse11-3.2.15.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "suse",
+		 "gitVersion" : "e11e3c1b9c9ce3f7b4a79493e16f5e4504e01140",
+		 "maxOsVersion" : "13.0",
+		 "minOsVersion" : "12.0",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-suse12-3.2.15.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "debian",
+		 "gitVersion" : "e11e3c1b9c9ce3f7b4a79493e16f5e4504e01140",
+		 "maxOsVersion" : "8.0",
+		 "minOsVersion" : "7.1",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-debian71-3.2.15.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "ubuntu",
+		 "gitVersion" : "e11e3c1b9c9ce3f7b4a79493e16f5e4504e01140",
+		 "maxOsVersion" : "13.04",
+		 "minOsVersion" : "12.04",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1204-3.2.15.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "ubuntu",
+		 "gitVersion" : "e11e3c1b9c9ce3f7b4a79493e16f5e4504e01140",
+		 "maxOsVersion" : "15.04",
+		 "minOsVersion" : "14.04",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1404-3.2.15.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "ubuntu",
+		 "gitVersion" : "e11e3c1b9c9ce3f7b4a79493e16f5e4504e01140",
+		 "maxOsVersion" : "17.04",
+		 "minOsVersion" : "16.04",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1604-3.2.15.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "amazon",
+		 "gitVersion" : "e11e3c1b9c9ce3f7b4a79493e16f5e4504e01140",
+		 "maxOsVersion" : "",
+		 "minOsVersion" : "2013.03",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-amazon-3.2.15.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "gitVersion" : "e11e3c1b9c9ce3f7b4a79493e16f5e4504e01140",
+		 "platform" : "osx",
+		 "url" : "https://fastdl.mongodb.org/osx/mongodb-osx-x86_64-3.2.15.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "gitVersion" : "e11e3c1b9c9ce3f7b4a79493e16f5e4504e01140",
+		 "platform" : "windows",
+		 "url" : "https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-3.2.15.zip"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "gitVersion" : "e11e3c1b9c9ce3f7b4a79493e16f5e4504e01140",
+		 "platform" : "windows",
+		 "url" : "https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-3.2.15.zip",
+		 "win2008plus" : true,
+		 "winVCRedistDll" : "msvcr120.dll",
+		 "winVCRedistOptions" : [ "/quiet", "/norestart" ],
+		 "winVCRedistUrl" : "http://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x64.exe",
+		 "winVCRedistVersion" : "12.0.21005.1"
+	  } ],
+	  "name" : "3.2.15"
+	}, {
+	  "builds" : [ {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "gitVersion" : "cf38c1b8a0a8dca4a11737581beafef4fe120bcd",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-3.4.7.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "rhel",
+		 "gitVersion" : "cf38c1b8a0a8dca4a11737581beafef4fe120bcd",
+		 "maxOsVersion" : "6.0",
+		 "minOsVersion" : "5.5",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel55-3.4.7.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "rhel",
+		 "gitVersion" : "cf38c1b8a0a8dca4a11737581beafef4fe120bcd",
+		 "maxOsVersion" : "7.0",
+		 "minOsVersion" : "6.2",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel62-3.4.7.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "rhel",
+		 "gitVersion" : "cf38c1b8a0a8dca4a11737581beafef4fe120bcd",
+		 "maxOsVersion" : "8.0",
+		 "minOsVersion" : "7.0",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.4.7.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "suse",
+		 "gitVersion" : "cf38c1b8a0a8dca4a11737581beafef4fe120bcd",
+		 "maxOsVersion" : "12.0",
+		 "minOsVersion" : "11.0",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-suse11-3.4.7.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "suse",
+		 "gitVersion" : "cf38c1b8a0a8dca4a11737581beafef4fe120bcd",
+		 "maxOsVersion" : "13.0",
+		 "minOsVersion" : "12.0",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-suse12-3.4.7.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "debian",
+		 "gitVersion" : "cf38c1b8a0a8dca4a11737581beafef4fe120bcd",
+		 "maxOsVersion" : "8.0",
+		 "minOsVersion" : "7.1",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-debian71-3.4.7.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "ubuntu",
+		 "gitVersion" : "cf38c1b8a0a8dca4a11737581beafef4fe120bcd",
+		 "maxOsVersion" : "13.04",
+		 "minOsVersion" : "12.04",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1204-3.4.7.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "ubuntu",
+		 "gitVersion" : "cf38c1b8a0a8dca4a11737581beafef4fe120bcd",
+		 "maxOsVersion" : "15.04",
+		 "minOsVersion" : "14.04",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1404-3.4.7.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "ubuntu",
+		 "gitVersion" : "cf38c1b8a0a8dca4a11737581beafef4fe120bcd",
+		 "maxOsVersion" : "17.04",
+		 "minOsVersion" : "16.04",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1604-3.4.7.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "flavor" : "amazon",
+		 "gitVersion" : "cf38c1b8a0a8dca4a11737581beafef4fe120bcd",
+		 "maxOsVersion" : "",
+		 "minOsVersion" : "2013.03",
+		 "platform" : "linux",
+		 "url" : "https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-amazon-3.4.7.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "gitVersion" : "cf38c1b8a0a8dca4a11737581beafef4fe120bcd",
+		 "platform" : "osx",
+		 "url" : "https://fastdl.mongodb.org/osx/mongodb-osx-x86_64-3.4.7.tgz"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "gitVersion" : "cf38c1b8a0a8dca4a11737581beafef4fe120bcd",
+		 "platform" : "windows",
+		 "url" : "https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-3.4.7.zip"
+	  }, {
+		 "architecture" : "amd64",
+		 "bits" : 64,
+		 "gitVersion" : "cf38c1b8a0a8dca4a11737581beafef4fe120bcd",
+		 "platform" : "windows",
+		 "url" : "https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-3.4.7.zip",
+		 "win2008plus" : true,
+		 "winVCRedistDll" : "vcruntime140.dll",
+		 "winVCRedistOptions" : [ "/quiet", "/norestart" ],
+		 "winVCRedistUrl" : "http://download.microsoft.com/download/6/D/F/6DF3FF94-F7F9-4F0B-838C-A328D1A7D0EE/vc_redist.x64.exe",
+		 "winVCRedistVersion" : "14.0.24212.0"
+	  } ],
+	  "name" : "3.4.7"
+	} ],
+	"monitoringVersions" : [ {
+	  "baseUrl" : null,
+	  "directoryUrl" : null,
+	  "hostname" : "ip-172-31-14-62.us-west-2.compute.internal",
+	  "logPath" : "/var/log/mongodb-mms-automation/monitoring-agent.log",
+	  "logRotate" : {
+		 "sizeThresholdMB" : 1000.0,
+		 "timeThresholdHrs" : 24
+	  },
+	  "name" : "5.4.5.370"
+	} ],
+	"options" : {
+	  "downloadBase" : "/var/lib/mongodb-mms-automation",
+	  "downloadBaseWindows" : "%SystemDrive%\\MMSAutomation\\versions"
+	},
+	"processes" : [ {
+	  "args2_6" : {
+		 "net" : {
+			"port" : 27018
+		 },
+		 "operationProfiling" : { },
+		 "replication" : {
+			"replSetName" : "scapi_rs_0"
+		 },
+		 "sharding" : {
+			"clusterRole" : "shardsvr"
+		 },
+		 "storage" : {
+			"dbPath" : "/data/scapi_rs_01"
+		 },
+		 "systemLog" : {
+			"destination" : "file",
+			"path" : "/data/scapi_rs_01/mongodb.log"
+		 }
+	  },
+	  "authSchemaVersion" : 3,
+	  "hostname" : "ip-172-31-14-42.us-west-2.compute.internal",
+	  "logRotate" : {
+		 "sizeThresholdMB" : 1000.0,
+		 "timeThresholdHrs" : 24
+	  },
+	  "name" : "scapi_rs_01",
+	  "processType" : "mongod",
+	  "version" : "3.2.15"
+	}, {
+	  "args2_6" : {
+		 "net" : {
+			"port" : 27018
+		 },
+		 "operationProfiling" : { },
+		 "replication" : {
+			"replSetName" : "scapi_rs_0"
+		 },
+		 "sharding" : {
+			"clusterRole" : "shardsvr"
+		 },
+		 "storage" : {
+			"dbPath" : "/data/scapi_rs_02"
+		 },
+		 "systemLog" : {
+			"destination" : "file",
+			"path" : "/data/scapi_rs_02/mongodb.log"
+		 }
+	  },
+	  "authSchemaVersion" : 3,
+	  "hostname" : "ip-172-31-4-157.us-west-2.compute.internal",
+	  "logRotate" : {
+		 "sizeThresholdMB" : 1000.0,
+		 "timeThresholdHrs" : 24
+	  },
+	  "name" : "scapi_rs_02",
+	  "processType" : "mongod",
+	  "version" : "3.2.15"
+	}, {
+	  "args2_6" : {
+		 "net" : {
+			"port" : 27018
+		 },
+		 "operationProfiling" : { },
+		 "replication" : {
+			"replSetName" : "scapi_rs_0"
+		 },
+		 "sharding" : {
+			"clusterRole" : "shardsvr"
+		 },
+		 "storage" : {
+			"dbPath" : "/data/scapi_rs_03"
+		 },
+		 "systemLog" : {
+			"destination" : "file",
+			"path" : "/data/scapi_rs_03/mongodb.log"
+		 }
+	  },
+	  "authSchemaVersion" : 3,
+	  "hostname" : "ip-172-31-10-97.us-west-2.compute.internal",
+	  "logRotate" : {
+		 "sizeThresholdMB" : 1000.0,
+		 "timeThresholdHrs" : 24
+	  },
+	  "name" : "scapi_rs_03",
+	  "processType" : "mongod",
+	  "version" : "3.2.15"
+	}, {
+	  "args2_6" : {
+		 "net" : {
+			"port" : 27018
+		 },
+		 "operationProfiling" : { },
+		 "replication" : {
+			"replSetName" : "scapi_rs_1"
+		 },
+		 "sharding" : {
+			"clusterRole" : "shardsvr"
+		 },
+		 "storage" : {
+			"dbPath" : "/data/scapi_rs_11"
+		 },
+		 "systemLog" : {
+			"destination" : "file",
+			"path" : "/data/scapi_rs_11/mongodb.log"
+		 }
+	  },
+	  "authSchemaVersion" : 3,
+	  "hostname" : "ip-172-31-12-64.us-west-2.compute.internal",
+	  "logRotate" : {
+		 "sizeThresholdMB" : 1000.0,
+		 "timeThresholdHrs" : 24
+	  },
+	  "name" : "scapi_rs_11",
+	  "processType" : "mongod",
+	  "version" : "3.2.15"
+	}, {
+	  "args2_6" : {
+		 "net" : {
+			"port" : 27018
+		 },
+		 "operationProfiling" : { },
+		 "replication" : {
+			"replSetName" : "scapi_rs_1"
+		 },
+		 "sharding" : {
+			"clusterRole" : "shardsvr"
+		 },
+		 "storage" : {
+			"dbPath" : "/data/scapi_rs_12"
+		 },
+		 "systemLog" : {
+			"destination" : "file",
+			"path" : "/data/scapi_rs_12/mongodb.log"
+		 }
+	  },
+	  "authSchemaVersion" : 3,
+	  "hostname" : "ip-172-31-3-186.us-west-2.compute.internal",
+	  "logRotate" : {
+		 "sizeThresholdMB" : 1000.0,
+		 "timeThresholdHrs" : 24
+	  },
+	  "name" : "scapi_rs_12",
+	  "processType" : "mongod",
+	  "version" : "3.2.15"
+	}, {
+	  "args2_6" : {
+		 "net" : {
+			"port" : 27018
+		 },
+		 "operationProfiling" : { },
+		 "replication" : {
+			"replSetName" : "scapi_rs_1"
+		 },
+		 "sharding" : {
+			"clusterRole" : "shardsvr"
+		 },
+		 "storage" : {
+			"dbPath" : "/data/scapi_rs_13"
+		 },
+		 "systemLog" : {
+			"destination" : "file",
+			"path" : "/data/scapi_rs_13/mongodb.log"
+		 }
+	  },
+	  "authSchemaVersion" : 3,
+	  "hostname" : "ip-172-31-9-101.us-west-2.compute.internal",
+	  "logRotate" : {
+		 "sizeThresholdMB" : 1000.0,
+		 "timeThresholdHrs" : 24
+	  },
+	  "name" : "scapi_rs_13",
+	  "processType" : "mongod",
+	  "version" : "3.2.15"
+	}, {
+	  "args2_6" : {
+		 "net" : {
+			"port" : 27019
+		 },
+		 "operationProfiling" : { },
+		 "sharding" : {
+			"clusterRole" : "configsvr"
+		 },
+		 "storage" : {
+			"dbPath" : "/data/scapi_csrs_1"
+		 },
+		 "systemLog" : {
+			"destination" : "file",
+			"path" : "/data/scapi_csrs_1/mongodb.log"
+		 }
+	  },
+	  "authSchemaVersion" : 3,
+	  "hostname" : "ip-172-31-9-83.us-west-2.compute.internal",
+	  "logRotate" : {
+		 "sizeThresholdMB" : 1000.0,
+		 "timeThresholdHrs" : 24
+	  },
+	  "name" : "scapi_csrs_1",
+	  "processType" : "mongod",
+	  "version" : "3.2.15"
+	}, {
+	  "args2_6" : {
+		 "net" : {
+			"port" : 27019
+		 },
+		 "operationProfiling" : { },
+		 "sharding" : {
+			"clusterRole" : "configsvr"
+		 },
+		 "storage" : {
+			"dbPath" : "/data/scapi_csrs_2"
+		 },
+		 "systemLog" : {
+			"destination" : "file",
+			"path" : "/data/scapi_csrs_2/mongodb.log"
+		 }
+	  },
+	  "authSchemaVersion" : 3,
+	  "hostname" : "ip-172-31-15-12.us-west-2.compute.internal",
+	  "logRotate" : {
+		 "sizeThresholdMB" : 1000.0,
+		 "timeThresholdHrs" : 24
+	  },
+	  "name" : "scapi_csrs_2",
+	  "processType" : "mongod",
+	  "version" : "3.2.15"
+	}, {
+	  "args2_6" : {
+		 "net" : {
+			"port" : 27019
+		 },
+		 "operationProfiling" : { },
+		 "sharding" : {
+			"clusterRole" : "configsvr"
+		 },
+		 "storage" : {
+			"dbPath" : "/data/scapi_csrs_3"
+		 },
+		 "systemLog" : {
+			"destination" : "file",
+			"path" : "/data/scapi_csrs_3/mongodb.log"
+		 }
+	  },
+	  "authSchemaVersion" : 3,
+	  "hostname" : "ip-172-31-14-62.us-west-2.compute.internal",
+	  "logRotate" : {
+		 "sizeThresholdMB" : 1000.0,
+		 "timeThresholdHrs" : 24
+	  },
+	  "name" : "scapi_csrs_3",
+	  "processType" : "mongod",
+	  "version" : "3.2.15"
+	}, {
+	  "args2_6" : {
+		 "net" : {
+			"port" : 27017
+		 },
+		 "operationProfiling" : { },
+		 "systemLog" : {
+			"destination" : "file",
+			"path" : "/data/scapi_mongos_1/mongodb.log"
+		 }
+	  },
+	  "authSchemaVersion" : 3,
+	  "cluster" : "scapi",
+	  "hostname" : "ip-172-31-5-60.us-west-2.compute.internal",
+	  "logRotate" : {
+		 "sizeThresholdMB" : 1000.0,
+		 "timeThresholdHrs" : 24
+	  },
+	  "name" : "scapi_mongos_1",
+	  "processType" : "mongos",
+	  "version" : "3.2.15"
+	}, {
+	  "args2_6" : {
+		 "net" : {
+			"port" : 27017
+		 },
+		 "operationProfiling" : { },
+		 "systemLog" : {
+			"destination" : "file",
+			"path" : "/data/scapi_mongos_2/mongodb.log"
+		 }
+	  },
+	  "authSchemaVersion" : 3,
+	  "cluster" : "scapi",
+	  "hostname" : "ip-172-31-14-62.us-west-2.compute.internal",
+	  "logRotate" : {
+		 "sizeThresholdMB" : 1000.0,
+		 "timeThresholdHrs" : 24
+	  },
+	  "name" : "scapi_mongos_2",
+	  "processType" : "mongos",
+	  "version" : "3.2.15"
+	}, {
+		"args2_6" : {
+		  "net" : {
+			 "port" : 27029
+		  },
+		  "operationProfiling" : { },
+		  "sharding" : {
+			 "clusterRole" : "configsvr"
+		  },
+		  "storage" : {
+			 "dbPath" : "/data/scapi_csrs_1_temp"
+		  },
+		  "systemLog" : {
+			 "destination" : "file",
+			 "path" : "/data/scapi_csrs_1_temp/mongodb.log"
+		  }
+		},
+		"authSchemaVersion" : 3,
+		"hostname" : "ip-172-31-14-62.us-west-2.compute.internal",
+		"logRotate" : {
+		  "sizeThresholdMB" : 1000.0,
+		  "timeThresholdHrs" : 24
+		},
+		"name" : "scapi_csrs_1_temp",
+		"processType" : "mongod",
+		"version" : "3.2.15"
+	 } ],
+	"replicaSets" : [ {
+	  "_id" : "scapi_rs_0",
+	  "members" : [ {
+		 "_id" : 0,
+		 "arbiterOnly" : false,
+		 "hidden" : false,
+		 "host" : "scapi_rs_01",
+		 "priority" : 1.0,
+		 "slaveDelay" : 0,
+		 "votes" : 1
+	  }, {
+		 "_id" : 1,
+		 "arbiterOnly" : false,
+		 "hidden" : false,
+		 "host" : "scapi_rs_02",
+		 "priority" : 1.0,
+		 "slaveDelay" : 0,
+		 "votes" : 1
+	  }, {
+		 "_id" : 2,
+		 "arbiterOnly" : false,
+		 "hidden" : false,
+		 "host" : "scapi_rs_03",
+		 "priority" : 1.0,
+		 "slaveDelay" : 0,
+		 "votes" : 1
+	  } ]
+	}, {
+	  "_id" : "scapi_rs_1",
+	  "members" : [ {
+		 "_id" : 0,
+		 "arbiterOnly" : false,
+		 "hidden" : false,
+		 "host" : "scapi_rs_11",
+		 "priority" : 1.0,
+		 "slaveDelay" : 0,
+		 "votes" : 1
+	  }, {
+		 "_id" : 1,
+		 "arbiterOnly" : false,
+		 "hidden" : false,
+		 "host" : "scapi_rs_12",
+		 "priority" : 1.0,
+		 "slaveDelay" : 0,
+		 "votes" : 1
+	  }, {
+		 "_id" : 2,
+		 "arbiterOnly" : false,
+		 "hidden" : false,
+		 "host" : "scapi_rs_13",
+		 "priority" : 1.0,
+		 "slaveDelay" : 0,
+		 "votes" : 1
+	  } ]
+	}, {
+		"_id" : "sharded_cluster_csrs",
+		"members" : [ {
+		  "_id" : 0,
+		  "arbiterOnly" : false,
+		  "hidden" : false,
+		  "host" : "scapi_rs_11",
+		  "priority" : 1.0,
+		  "slaveDelay" : 0,
+		  "votes" : 1
+		}, {
+		  "_id" : 1,
+		  "arbiterOnly" : false,
+		  "hidden" : false,
+		  "host" : "scapi_rs_12",
+		  "priority" : 1.0,
+		  "slaveDelay" : 0,
+		  "votes" : 1
+		}, {
+		  "_id" : 2,
+		  "arbiterOnly" : false,
+		  "hidden" : false,
+		  "host" : "scapi_rs_13",
+		  "priority" : 1.0,
+		  "slaveDelay" : 0,
+		  "votes" : 1
+		} ]
+	 } ],
+	"roles" : [ ],
+	"sharding" : [ {
+	  "collections" : [ ],
+	  "configServer" : [ "scapi_csrs_1", "scapi_csrs_2", "scapi_csrs_3" ],
+	  "configServerReplica": "sharded_cluster_csrs",
+	  "managedSharding" : false,
+	  "name" : "scapi",
+	  "shards" : [ {
+		 "_id" : "scapi_rs_0",
+		 "rs" : "scapi_rs_0",
+		 "tags" : [ ]
+	  }, {
+		 "_id" : "scapi_rs_1",
+		 "rs" : "scapi_rs_1",
+		 "tags" : [ ]
+	  } ],
+	  "tags" : [ ]
+	} ],
+	"uiBaseUrl" : null,
+	"version" : 33
+ }

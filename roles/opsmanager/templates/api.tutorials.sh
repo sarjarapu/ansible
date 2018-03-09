@@ -48,5 +48,8 @@ curl -u "$username:$apiKey" "http://$url/api/public/v1.0/groups/$group_id/automa
 # Verify that the configuration update is deployed.
 curl -u "$username:$apiKey" "http://$url/api/public/v1.0/groups/$group_id/automationStatus" --digest -i
 
+curl -u "$username:$apiKey" "http://$url/api/public/v1.0/groups/$group_id/automationConfig?pretty=true" --digest -i > get.automation.config.json
 
-curl -u "$username:$apiKey" -H "Content-Type: application/json" "http://$url/api/public/v1.0/groups/$group_id/automationConfig" --digest -i -X PUT --data @/Users/shyamarjarapu/Code/work/git-hub/sarjarapu/ansible/roles/opsmanager/templates/automation.config.json
+# 2017-08-21T23:16:04.590+0000 E -        [mongosMain] error upgrading config database to v6 :: caused by :: newer version 6 of mongo config metadata is required, current version is 5, need to run mongos with --upgrade
+# {"detail":"Invalid automation config: Unable to upgrade from the MongoDB 2.6 series to the 3.2 series. Please upgrade to 3.0 first","error":400,"errorCode":null,"parameters":null,"reason":"Bad Request"}shyam-macbook:templates shyamarjarapu$ curl -u "$username:$apiKey" -H "Content-Type: application/json" "http://$url/api/public/v1. --digest -i -X PUT --data @/Users/shyamarjarapu/Code/work/git-hub/sarjarapu/ansible/roles/opsmanager/templates/get.automation.config.json
+
