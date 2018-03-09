@@ -3,10 +3,12 @@ Role Name
 
 A brief description of the role goes here.
 
-Requirements
+Provision AWS Instances
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+If you need to provision infrastructure on Amazon Web Services then you could use the playbook `01.create.instances.yml`
+
+`ansible-playbook 01.create.instances.yml`
 
 Role Variables
 --------------

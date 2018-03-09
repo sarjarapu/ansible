@@ -1,6 +1,6 @@
 ---
 - name: check if instance name = [{{ instance_name }}] already exists
-  ec2_remote_facts:
+  ec2_instance_facts:
     region: "{{ region }}"
     filters:
       instance-state-name: running
@@ -75,3 +75,28 @@
         "expire-on": "{{ tag_expireon }}"
     with_items: "{{ volumes_output.volumes }}"
   when: instance_check.instances.0 is undefined
+
+- block:
+  - name: load the instance facts for instance = [{{ instance_name }}]
+    ec2_instance_facts:
+      region: "{{ region }}"
+      filters:
+        instance-state-name: running
+        "tag:Name": "{{ instance_name }}"
+    register: instance_check
+
+  - name: add the [{{ server_group_name }}] to hosts file
+    lineinfile:
+      dest: "hosts"
+      line: "[{{ server_group_name }}]"
+      state: present
+      create: True
+
+  - name: add the {{ instance_check.instances.0.public_dns_name }} to [{{ server_group_name }}] group in hosts file
+    lineinfile:
+      dest: "hosts"
+      regexp: "^{{ instance_check.instances.0.public_dns_name }}"
+      insertafter: "{{ server_group_name }}"
+      line: "{{ instance_check.instances.0.public_dns_name }} instance_name={{ instance_name }} private_dns={{ instance_check.instances.0.private_dns_name }} private_ip={{ instance_check.instances.0.private_ip_address }}"
+      state: present
+      create: True

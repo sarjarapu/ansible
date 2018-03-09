@@ -1,3 +1,5 @@
-*.retry
+# ignore anisble retry files
 hosts
+*.retry
 private.txt
+

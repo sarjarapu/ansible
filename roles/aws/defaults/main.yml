@@ -5,8 +5,9 @@ tag_expireon: "2017-08-30"
 data_vol_size: 60
 tag_name: "ska"
 group_name: "opsmgr"
-
 server_number: 1
+
+
 instance_name: "{{ tag_name }}_{{ group_name }}_{{ server_number }}"
 server_group_name: "{{ tag_name }}_{{ group_name}}"
 ssh_user: "ec2-user"
@@ -20,7 +21,7 @@ tag_owner: "shyam.arjarapu"
 region: "us-west-2"
 security_key: "ska-play"
 security_group: "ska-sg-aws"
-redhat_ami: "ami-9fa343e7"
+redhat_ami: "ami-223f945a"
 
 
 availability_zone: "{{ region }}c"
