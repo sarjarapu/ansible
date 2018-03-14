@@ -33,9 +33,3 @@
     shell: "openssl req -new -key {{ssl_private_key}} -out {{ssl_csr_file}} -subj '{{cn_prefix}}/CN={{private_dns}}'"
 
   when: check_csr_file.stat.exists == False
-
-- name: download the csr file to local
-  fetch:
-    src: "{{ssl_csr_file}}"
-    dest: "/tmp/csr/{{private_dns}}.csr"
-    flat: yes
