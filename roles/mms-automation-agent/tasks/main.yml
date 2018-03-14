@@ -2,7 +2,7 @@
 - name: install mongodb mms automation agent
   become: true
   yum:
-    name: "{{opsmanager_uri}}/download/agent/automation/{{automation_agent_binary_name}}"
+    name: "{{mms_url}}/download/agent/automation/{{automation_agent_binary_name}}"
     state: present
 
 - name: stop mongodb-mms-automation-agent.service
@@ -32,7 +32,7 @@
   replace:
     path: /etc/mongodb-mms/automation-agent.config
     regexp: '^mmsBaseUrl.+$'
-    replace: 'mmsBaseUrl={{opsmanager_uri}}'
+    replace: 'mmsBaseUrl={{mms_api_url}}'
 
 
 - name: create the {{ data_folder }} folder
@@ -43,6 +43,26 @@
     owner: mongod
     group: mongod
     mode: 0755
+
+- name: install all the mongodb enterprise dependencies
+  yum: 
+    name: "{{item}}"
+    state: present
+  with_items:
+    - cyrus-sasl
+    - cyrus-sasl-gssapi
+    - cyrus-sasl-plain
+    - krb5-libs
+    - libcurl
+    - libpcap
+    - lm_sensors-libs
+    - net-snmp
+    - net-snmp-agent-libs
+    - openldap
+    - openssl
+    - rpm-libs
+    - tcp_wrappers-libs
+  become: true
 
 - name: start and enable mongodb-mms-automation-agent.service
   become: true
