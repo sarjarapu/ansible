@@ -1,0 +1,11 @@
+---
+- name: copy all the csr requests 
+  hosts:  "ska_ssl_rs1[0]"
+  roles:
+    - role: "ssl-sign-csr"
+
+
+# - name: create cerficiate signing request file
+#   hosts: "ska_ssl_rs1[0]"
+#   roles:
+#     - role: "ssl-sign-csr"

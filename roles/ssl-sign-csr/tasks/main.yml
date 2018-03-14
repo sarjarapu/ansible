@@ -1,35 +1,6 @@
 ---
-- name: check if  {{ssl_csr_file}} file already exists
-  stat: 
-    path: "{{ssl_csr_file}}"
-  register: check_csr_file
-
-- block:
-    
-  - name: create crt, private and csr folders at /etc/ssl
-    become: true
-    file:
-      state: directory
-      path: "{{ssl_folder}}/{{ item }}"
-      mode: 0755
-    with_items:
-      - public
-      - private
-      - csr
-
-  - name: create a private key for file mongodb.key
-    become: true
-    shell: "openssl genrsa -out {{ssl_private_key}} 4096 creates={{ssl_private_key}}"
-
-  - name: set the mode to readonly just for root
-    become: true
-    file:
-      state: file
-      path: "{{ssl_private_key}}"
-      mode: 0400
-
-  - name: create a certificate signing request file mongodb.csr
-    become: true
-    shell: "openssl req -new -key {{ssl_private_key}} -out {{ssl_csr_file}} -subj '{{cn_prefix}}/CN={{private_dns}}'"
-
-  when: check_csr_file.stat.exists == False
+- name: copy all the files from local machine to the signing server
+  become: true
+  synchronize: 
+    src: "{{local_csr_folder}}/"
+    dest: "{{ssl_folder}}/sign_requests"

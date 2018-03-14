@@ -1,9 +1,5 @@
 ---
-# defaults file for ssl-create-self-signed-rootca
+# defaults file for ssl-sign-csr
 
 ssl_folder: "/etc/ssl"
-ssl_filename: "mongodb"
-ssl_private_key: "{{ssl_folder}}/private/{{ssl_filename}}.key"
-ssl_public_crt: "{{ssl_folder}}/public/{{ssl_filename}}.crt"
-ssl_csr_file: "{{ssl_folder}}/csr/{{ssl_filename}}.csr"
-cn_prefix: "/C=US/ST=Texas/L=Austin/O=MongoDB/OU=Operations"
+local_csr_folder: "/tmp/csr"
