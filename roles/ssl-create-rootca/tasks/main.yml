@@ -1,0 +1,35 @@
+---
+- name: check if  {{ssl_public_crt}} file already exists
+  stat: 
+    path: "{{ssl_public_crt}}"
+  register: check_crt_file
+
+- block:
+    
+  - name: create crt, private and csr folders at /etc/ssl
+    become: true
+    file:
+      state: directory
+      path: "{{ssl_folder}}/{{ item }}"
+      mode: 0755
+    with_items:
+      - public
+      - private
+      - sign_requests
+
+  - name: create a private key for file rootCA.key
+    become: true
+    shell: "openssl genrsa -out {{ssl_private_key}} 4096 creates={{ssl_private_key}}"
+
+  - name: set the mode to readonly just for root
+    become: true
+    file:
+      state: file
+      path: "{{ssl_private_key}}"
+      mode: 0400
+
+  - name: generate the public root certificate for file rootCA.crt
+    become: true
+    shell: "openssl req -x509 -new -nodes -key {{ssl_private_key}} -days 365 -out {{ssl_public_crt}} -subj '{{cn_prefix}}/CN={{private_dns}}'"
+
+  when: check_crt_file.stat.exists == False

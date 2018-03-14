@@ -1,0 +1,5 @@
+---
+- name: create self signed root certificate authority
+  hosts: "ska_ssl_rs1[0]"
+  roles:
+    - role: "ssl-create-rootca"

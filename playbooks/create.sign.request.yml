@@ -1,0 +1,5 @@
+---
+- name: create cerficiate signing request file
+  hosts: "ska_ssl_rs1"
+  roles:
+    - role: "ssl-create-csr"

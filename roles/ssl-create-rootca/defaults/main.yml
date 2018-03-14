@@ -1,0 +1,8 @@
+---
+# defaults file for ssl-create-self-signed-rootca
+
+ssl_folder: "/etc/ssl"
+ssl_filename: "rootCA"
+ssl_private_key: "{{ssl_folder}}/private/{{ssl_filename}}.key"
+ssl_public_crt: "{{ssl_folder}}/public/{{ssl_filename}}.crt"
+cn_prefix: "/C=US/ST=Texas/L=Austin/O=MongoDB/OU=Certification Authority"
