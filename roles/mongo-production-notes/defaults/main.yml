@@ -1,0 +1,3 @@
+---
+ssh_wait_timeout: 600
+read_ahead_blockdevice: "/dev/xvdb"

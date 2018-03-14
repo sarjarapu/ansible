@@ -1,0 +1,8 @@
+---
+# defaults file for opsmanager
+mms_url: "http://ec2-54-214-214-22.us-west-2.compute.amazonaws.com:8080"
+automation_agent_version: "3.2.14.2187-1.x86_64.rhel7"
+automation_agent_binary_name: "mongodb-mms-automation-agent-manager-{{automation_agent_version}}.rpm"
+mmsGroupId: "5998d2fcbba0ea27746e067d"
+mmsApiKey: "747862e5601e5eda9ff73077cb69d331"
+data_folder: "/data"

@@ -1,0 +1,9 @@
+---
+- name: create aws instance for replicaset 
+  hosts: "ska_ssl_rs1"
+  tasks:
+    - include_role:
+        name: "mms-automation-agent"
+      vars:
+        server_number: "{{ role_item }}"
+        tag_expireon: "2018-03-30"

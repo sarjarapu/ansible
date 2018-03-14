@@ -8,13 +8,13 @@
         ami: "ami-223f945a"
         instance_type: "t2.micro"
         data_vol_size: 100
-        tag_name: "ska_mdb"
+        tag_name: "ska_ssl"
         group_name: "rs1"
         server_number: "{{ role_item }}"
         tag_expireon: "2018-03-30"
       with_items: 
         - '01'
-        # - '02'
-        # - '03'
+        - '02'
+        - '03'
       loop_control:
         loop_var: "role_item"

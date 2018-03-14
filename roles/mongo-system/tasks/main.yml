@@ -1,0 +1,84 @@
+---
+- name: print the hostname, ip address
+  debug: msg="private_dns [{{private_dns}}] private_ip [{{private_ip}}]"
+
+- name: install xfsprogs and xfsdump
+  yum: 
+    name: "{{item}}"
+    state: present
+  with_items:
+    - xfsprogs
+    - xfsdump
+    - curl
+  become: true
+
+- name: check whether swap is already enabled or not
+  command: cat /proc/sys/vm/swappiness
+  register: actual_swappiness
+
+- name: print the existing swappiness
+  debug: msg="actual_swappiness [{{ actual_swappiness.stdout }}]"
+
+- block:
+  - name: turn off the swap if already exists
+    command: swapoff -a
+
+  - name: setup swap
+    command: mkswap -f  "{{swap_device}}"
+
+  - name: create swap
+    command: swapon  "{{swap_device}}"
+
+  - name: add {{swap_device}} entry in /etc/fstab; ansible module mount doesnt work!
+    lineinfile:
+      path: /etc/fstab
+      line: "{{swap_device}} none swap sw 0 0"
+      state: present
+
+  when: actual_swappiness.stdout != "60"
+  become: true
+  
+# NOTES: should you need to rerun
+# sudo rm -rf /app/* && sudo umount /dev/xvdb && sudo rm -rf /app
+# sudo rm -rf /app/mongodb/db/* /etc/mongod.conf
+
+- name: check if {{ app_mount_path }} folder already exists
+  stat: 
+    path: "{{ app_mount_path }}"
+  register: check_folder
+
+- block:
+  - name: format /dev/xvdb volume as XFS
+    become: true
+    filesystem:
+      fstype: xfs
+      dev: /dev/xvdb
+      force: False
+      # CAUTION: never use force: True, unless you are playing around
+
+  - name: create {{ app_mount_path }} folder at root
+    become: true
+    file:
+      state: directory
+      path: "{{ app_mount_path }}"
+      mode: 0755
+
+  - name: mount the device /dev/xvdb as data
+    become: true
+    mount:
+      path: "{{ app_mount_path }}"
+      src: /dev/xvdb
+      fstype: xfs
+      opts: noatime
+      state: mounted
+
+  - name: set {{ app_mount_path }} permissions to ec2user
+    become: true
+    file:
+      path: "{{ app_mount_path }}"
+      state: directory
+      owner: ec2-user
+      group: ec2-user
+      mode: 0755
+  when: check_folder.stat.exists == False
+

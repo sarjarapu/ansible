@@ -1,0 +1,3 @@
+---
+swap_device: "/dev/xvdf"
+app_mount_path: "/app"
