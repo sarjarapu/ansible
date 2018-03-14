@@ -6,5 +6,3 @@
         name: "mongo-system"
     - include_role:
         name: "mongo-production-notes"
-    # - include_role:
-    #     name: "mms-automation-agent"
