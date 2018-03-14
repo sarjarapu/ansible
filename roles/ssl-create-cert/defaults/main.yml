@@ -1,0 +1,10 @@
+---
+# defaults file for ssl-create-cert
+
+ssl_folder: "/etc/ssl"
+ssl_filename: "rootCA"
+ssl_sign_requests: "{{ssl_folder}}/sign_requests"
+ssl_private_key: "{{ssl_folder}}/private/{{ssl_filename}}.key"
+ssl_public_crt: "{{ssl_folder}}/public/{{ssl_filename}}.crt"
+
+cn_prefix: "/C=US/ST=Texas/L=Austin/O=MongoDB/OU=Operations"

@@ -1,0 +1,5 @@
+---
+- name: create certs for the csr requests
+  hosts:  "ska_ssl_rs1[0]"
+  roles:
+    - role: "ssl-create-cert"
