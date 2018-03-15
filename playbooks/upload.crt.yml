@@ -1,6 +1,11 @@
 ---
 
-# - name: remove all ssl files directories
+- name: copy all the crt certificates 
+  hosts: "ska_ssl_rs1[0]"
+  roles:
+    - role: "ssl-upload-crt"
+
+# - name: cleanup - remove all ssl files directories
 #   hosts:  "ska_ssl_rs1"
 #   tasks:
 #     - name: create directories for holding the certificates
@@ -14,20 +19,11 @@
 #         - public
 #         - private
 
-# - name: remove all locoal ssl files & directories
+
+# - name: cleanup - remove temporary ssl files & directories on local machine
 #   hosts:  "local"
 #   tasks:
 #     - name: delete the temporary directories
-#       become: true
 #       file: 
-#         path: "/tmp/openssl/{{item}}"
+#         path: "/tmp/openssl"
 #         state: absent
-#       with_items:
-#         - csr
-#         - crt
-
-
-- name: copy all the csr requests 
-  hosts: "ska_ssl_rs1[0]"
-  roles:
-    - role: "ssl-upload-crt"

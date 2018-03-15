@@ -44,5 +44,5 @@
 - name: download the csr file to local
   fetch:
     src: "{{ssl_csr_folder}}/{{private_dns}}.csr"
-    dest: "/tmp/csr/{{private_dns}}.csr"
+    dest: "/tmp/openssl/csr/{{private_dns}}.csr"
     flat: yes

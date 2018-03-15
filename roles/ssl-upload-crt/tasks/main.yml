@@ -12,3 +12,12 @@
 - name: create pem files for mongodb servers
   become: true
   shell: "cat {{ssl_private_folder}}/{{private_dns}}.key {{ssl_public_folder}}/{{private_dns}}.crt > {{ssl_private_folder}}/mongodb.pem"
+
+- name: verify that the .pem file can be validated with the root certificate that was used to sign it
+  become: true
+  shell: "openssl verify -CAfile {{ssl_public_folder}}/rootCA.crt {{ssl_private_folder}}/mongodb.pem"
+  register: verify_output
+
+- name: print the openssl verification output
+  debug: msg="{{verify_output.stdout}}"
+
