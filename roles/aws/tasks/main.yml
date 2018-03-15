@@ -44,14 +44,14 @@
 
   - name: add the [{{ server_group_name }}] to hosts file
     lineinfile:
-      dest: "hosts"
+      dest: "../hosts"
       line: "[{{ server_group_name }}]"
       state: present
       create: True
 
   - name: add the {{ create_output.instances.0.public_dns_name }} to [{{ server_group_name }}] group in hosts file
     lineinfile:
-      dest: "hosts"
+      dest: "../hosts"
       regexp: "^{{ create_output.instances.0.public_dns_name }}"
       insertafter: "{{ server_group_name }}"
       line: "{{ create_output.instances.0.public_dns_name }}"
@@ -87,14 +87,14 @@
 
   - name: add the [{{ server_group_name }}] to hosts file
     lineinfile:
-      dest: "hosts"
+      dest: "../hosts"
       line: "[{{ server_group_name }}]"
       state: present
       create: True
 
   - name: add the {{ instance_check.instances.0.public_dns_name }} to [{{ server_group_name }}] group in hosts file
     lineinfile:
-      dest: "hosts"
+      dest: "../hosts"
       regexp: "^{{ instance_check.instances.0.public_dns_name }}"
       insertafter: "{{ server_group_name }}"
       line: "{{ instance_check.instances.0.public_dns_name }} instance_name={{ instance_name }} private_dns={{ instance_check.instances.0.private_dns_name }} private_ip={{ instance_check.instances.0.private_ip_address }}"
