@@ -1,6 +1,0 @@
----
-
-- name: copy all the crt files onto servers 
-  hosts:  "ska_ssl_rs1"
-  roles:
-    - role: "ssl-upload-crt"

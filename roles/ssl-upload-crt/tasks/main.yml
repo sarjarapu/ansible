@@ -4,6 +4,7 @@
   copy: 
     src: "{{local_crt_folder}}/{{item}}.crt"
     dest: "{{ssl_public_folder}}/{{item}}.crt"
+    force: no
   with_items:
     - "{{private_dns}}"
     - "rootCA"

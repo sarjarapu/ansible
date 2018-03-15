@@ -1,7 +1,7 @@
 ---
-- name: check if  {{ssl_csr_file}} file already exists
+- name: check if  {{ssl_csr_folder}}/{{private_dns}} file already exists
   stat: 
-    path: "{{ssl_csr_file}}"
+    path: "{{ssl_csr_folder}}/{{private_dns}}.csr"
   register: check_csr_file
 
 - block:
@@ -17,25 +17,32 @@
       - private
       - csr
 
-  - name: create a private key for file mongodb.key
+  - name: create a private key for file {{private_dns}}.key
     become: true
+    vars:
+      ssl_private_key: "{{ssl_private_folder}}/{{private_dns}}.key"
     shell: "openssl genrsa -out {{ssl_private_key}} 4096 creates={{ssl_private_key}}"
 
   - name: set the mode to readonly just for root
     become: true
+    vars:
+      ssl_private_key: "{{ssl_private_folder}}/{{private_dns}}.key"
     file:
       state: file
       path: "{{ssl_private_key}}"
       mode: 0400
 
-  - name: create a certificate signing request file mongodb.csr
+  - name: create a certificate signing request file {{private_dns}}.csr
     become: true
+    vars:
+      ssl_private_key: "{{ssl_private_folder}}/{{private_dns}}.key"
+      ssl_csr_file: "{{ssl_csr_folder}}/{{private_dns}}.csr"
     shell: "openssl req -new -key {{ssl_private_key}} -out {{ssl_csr_file}} -subj '{{cn_prefix}}/CN={{private_dns}}'"
 
   when: check_csr_file.stat.exists == False
 
 - name: download the csr file to local
   fetch:
-    src: "{{ssl_csr_file}}"
+    src: "{{ssl_csr_folder}}/{{private_dns}}.csr"
     dest: "/tmp/csr/{{private_dns}}.csr"
     flat: yes

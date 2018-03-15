@@ -1,0 +1,6 @@
+---
+
+- name: copy all the csr files onto servers 
+  hosts:  "ska_ssl_rs1"
+  roles:
+    - role: "ssl-upload-csr"

@@ -2,8 +2,7 @@
 # defaults file for ssl-create-csr
 
 ssl_folder: "/etc/ssl"
-ssl_filename: "mongodb"
-ssl_private_key: "{{ssl_folder}}/private/{{ssl_filename}}.key"
-ssl_public_crt: "{{ssl_folder}}/public/{{ssl_filename}}.crt"
-ssl_csr_file: "{{ssl_folder}}/csr/{{ssl_filename}}.csr"
+ssl_private_folder: "{{ssl_folder}}/private"
+ssl_public_folder: "{{ssl_folder}}/public"
+ssl_csr_folder: "{{ssl_folder}}/csr"
 cn_prefix: "/C=US/ST=Texas/L=Austin/O=MongoDB/OU=Operations"

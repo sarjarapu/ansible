@@ -1,22 +1,33 @@
 ---
 
-- name: remove all ssl files directories
-  hosts:  "ska_ssl_rs1"
-  tasks:
-    - name: create directories for holding the certificates
-      become: true
-      file: 
-        path: "/etc/ssl/{{item}}"
-        state: absent
-      with_items:
-        - csr
-        - sign_requests
-        - public
-        - private
+# - name: remove all ssl files directories
+#   hosts:  "ska_ssl_rs1"
+#   tasks:
+#     - name: create directories for holding the certificates
+#       become: true
+#       file: 
+#         path: "/etc/ssl/{{item}}"
+#         state: absent
+#       with_items:
+#         - csr
+#         - sign_requests
+#         - public
+#         - private
+
+# - name: remove all locoal ssl files & directories
+#   hosts:  "local"
+#   tasks:
+#     - name: delete the temporary directories
+#       become: true
+#       file: 
+#         path: "/tmp/openssl/{{item}}"
+#         state: absent
+#       with_items:
+#         - csr
+#         - crt
 
 
-
-# - name: copy all the csr requests 
-#   hosts: "ska_ssl_rs1[0]"
-#   roles:
-#     - role: "ssl-upload-crt"
+- name: copy all the csr requests 
+  hosts: "ska_ssl_rs1[0]"
+  roles:
+    - role: "ssl-upload-crt"
