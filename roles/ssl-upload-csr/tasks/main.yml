@@ -1,6 +1,0 @@
----
-- name: copy all the files from local machine to the signing server
-  become: true
-  synchronize: 
-    src: "{{local_csr_folder}}/"
-    dest: "{{ssl_folder}}/sign_requests"

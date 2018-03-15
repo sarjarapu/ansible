@@ -1,5 +1,0 @@
----
-# defaults file for ssl-sign-csr
-
-ssl_folder: "/etc/ssl"
-local_csr_folder: "/tmp/openssl/csr"

@@ -1,0 +1,13 @@
+---
+- name: copy all the crt files from local machine to the individual servers
+  become: true
+  copy: 
+    src: "{{local_crt_folder}}/{{item}}.crt"
+    dest: "{{ssl_public_folder}}/{{item}}.crt"
+  with_items:
+    - "{{private_dns}}"
+    - "rootCA"
+
+- name: create pem files for mongodb servers
+  become: true
+  shell: "cat {{ssl_private_folder}}/{{private_dns}}.key {{ssl_public_folder}}/{{private_dns}}.crt > {{ssl_private_folder}}/mongodb.pem"

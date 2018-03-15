@@ -1,0 +1,7 @@
+---
+# defaults file for ssl-sign-csr
+
+ssl_folder: "/etc/ssl"
+local_crt_folder: "/tmp/openssl/crt"
+ssl_public_folder: "{{ssl_folder}}/public"
+ssl_private_folder: "{{ssl_folder}}/private"
