@@ -13,6 +13,14 @@
     ssl_sign_cert: "{{item.path | regex_replace('sign_requests', 'public') | regex_replace('csr$', 'crt')}}"
   with_items: "{{requests.files}}"
 
+- name: copy all the crt files from signing server to local machine
+  become: true
+  synchronize: 
+    mode: pull
+    src: "{{ssl_folder}}/public/*.crt"
+    dest: "{{local_crt_folder}}"
+    
+
 # - name: check if  {{ssl_csr_file}} file already exists
 #   stat: 
 #     path: "{{ssl_csr_file}}"
