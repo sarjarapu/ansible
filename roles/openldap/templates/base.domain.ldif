@@ -1,0 +1,139 @@
+
+#
+# Top level objects
+#
+
+dn: dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+objectClass: dcObject
+objectclass: organization
+o: {{ ldap_org_name }} {{ ldap_org_type }}
+dc: {{ ldap_org_name }}
+
+dn: cn={{ ldap_admin }},dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+objectClass: organizationalRole
+cn: {{ ldap_admin }}
+description: Directory Manager
+
+dn: ou=Users,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+objectClass: organizationalUnit
+ou: Users
+
+dn: ou=Groups,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+objectClass: organizationalUnit
+ou: Groups
+
+#
+# Users DBA, readonly, readwrite
+#
+
+dn: cn={{ dba_username }},ou=Users,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+objectclass: inetOrgPerson
+objectclass: person
+objectclass: organizationalPerson
+cn: {{ dba_username }}
+sn: {{ dba_username }}
+uid: {{ dba_username }}
+userpassword: {{ dba_username_password_hash }}
+
+dn: cn={{ app_readonly_username }},ou=Users,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+objectclass: inetOrgPerson
+objectclass: person
+objectclass: organizationalPerson
+cn: {{ app_readonly_username }}
+sn: {{ app_readonly_username }}
+uid: {{ app_readonly_username }}
+userpassword: {{ app_readonly_password_hash }}
+
+dn: cn={{ app_readwrite_username }},ou=Users,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+objectclass: inetOrgPerson
+objectclass: person
+objectclass: organizationalPerson
+cn: {{ app_readwrite_username }}
+sn: {{ app_readwrite_username }}
+uid: {{ app_readwrite_username }}
+userpassword: {{ app_readwrite_password_hash }}
+
+#
+# Groups: DBAdmin, AppReadOnly, AppReadWrite
+#
+
+dn: cn=DBAdmin,ou=Groups,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+objectclass: groupofnames
+cn: DBAdmin
+member: cn={{ dba_username }},ou=Users,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+
+dn: cn=AppReadOnly,ou=Groups,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+objectclass: groupofnames
+cn: AppReadOnly
+member: cn={{ dba_username }},ou=Users,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+member: cn={{ app_readonly_username }},ou=Users,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+member: cn={{ app_readwrite_username }},ou=Users,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+
+dn: cn=AppReadWrite,ou=Groups,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+objectclass: groupofnames
+cn: AppReadWrite
+member: cn={{ dba_username }},ou=Users,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+member: cn={{ app_readwrite_username }},ou=Users,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+
+
+# Tutorial implementation with tweaks
+
+dn: cn=Marketing,ou=Groups,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+objectclass: groupofnames
+cn: Marketing
+member: cn=bob,ou=Users,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+member: cn=oe,ou=Users,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+
+dn: cn=Web,ou=Groups,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+objectclass: groupofnames
+cn: Web
+member: cn=alice,ou=Users,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+
+dn: cn=DBA,ou=Groups,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+objectclass: groupofnames
+cn: DBA
+member: cn=sam,ou=Users,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+
+dn: cn=Engineering,ou=Groups,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+objectclass: groupofnames
+cn: Engineering
+member: cn=Web,ou=Groups,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+member: cn=DBA,ou=Groups,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+
+
+
+dn: cn=alice,ou=Users,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+objectclass: inetOrgPerson
+objectclass: person
+objectclass: organizationalPerson
+cn: alice
+sn: alice
+uid: alice
+userpassword: {{ alice_password_hash }}
+
+dn: cn=bob,ou=Users,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+objectclass: inetOrgPerson
+objectclass: person
+objectclass: organizationalPerson
+cn: bob
+sn: bob
+uid: bob
+userpassword: {{ bob_password_hash }}
+
+dn: cn=joe,ou=Users,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+objectclass: inetOrgPerson
+objectclass: person
+objectclass: organizationalPerson
+cn: joe
+sn: joe
+uid: joe
+userpassword: {{ joe_password_hash }}
+
+dn: cn=sam,ou=Users,dc={{ ldap_org_name }},dc={{ ldap_org_type }}
+objectclass: inetOrgPerson
+objectclass: person
+objectclass: organizationalPerson
+cn: sam
+sn: sam
+uid: sam
+userpassword: {{ sam_password_hash }}

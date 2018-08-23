@@ -1,0 +1,9 @@
+---
+- name: create cerficiate signing request file
+  hosts: "vm-openldap"
+  tasks:
+    # - shell: "hostname -f"
+    #   register: hostname_output
+    # - debug: msg="{{hostname_output}}"
+  roles:
+    - role: "openldap"

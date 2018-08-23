@@ -1,0 +1,25 @@
+---
+# defaults file for openldap
+ldap_org_name : "arjarapu"
+ldap_org_type : "local"
+
+ldap_admin : "ldapadmin"
+ldap_admin_password : ldapadmin123
+
+dba_username : "dba"
+dba_password : "dba123"
+
+app_readonly_username : "appreadonly"
+app_readonly_password : "appreadonly123"
+
+app_readwrite_username : "appreadwrite"
+app_readwrite_password : "appreadwrite123"
+
+users: 
+  - dba
+  - appreader
+  - appwriter
+  - alice
+  - bob
+  - joe
+  - sam

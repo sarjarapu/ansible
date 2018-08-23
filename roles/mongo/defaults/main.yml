@@ -10,3 +10,5 @@ mongod_config_path: "/etc/mongod.conf"
 bind_ip: "127.0.0.1,{{private_ip}}"
 mongod_service: "mongod"
 ssh_wait_timeout: 600
+root_username: "superuser"
+root_password: "supersecret"

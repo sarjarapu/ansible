@@ -1,2 +1,4 @@
 ---
 ansible_ssh_user: ec2-user
+# ansible_ssh_user: root
+# ansible_password: P@$$w0rd

@@ -1,0 +1,79 @@
+---
+#
+# Install and configure OpenLDAP
+# 
+
+- name: create passwords for the users
+  hosts: local
+  debug: msg="{{ item }}"
+  with_items:
+    - users
+
+# - name: install openldap and other dependencies
+#   become: true
+#   yum: 
+#     name: "{{item}}"
+#     state: present
+#   with_items:
+#     - libtool-ltdl
+#     - openldap
+#     - openldap-clients
+#     - openldap-servers
+
+# - name: Start openldap and ensure it's started on system reboot
+#   become: true
+#   service:
+#     name: slapd
+#     state: started
+#     enabled: yes
+
+# - name: create password hashes
+#   command: /usr/sbin/slappasswd -s {{ item }}
+#   with_items:
+#     - "{{ ldap_admin_password }}"
+#     - "{{ dba_password }}"
+#     - "{{ app_readonly_password }}"
+#     - "{{ app_readwrite_password }}"
+#     - "{{ alice_password }}"
+#     - "{{ bob_password }}"
+#     - "{{ joe_password }}"
+#     - "{{ sam_password }}"
+#   register: ldap_passwds
+# - set_fact:
+#     ldap_admin_password_hash : "{{ ldap_passwds.results[0].stdout }}"
+#     dba_username_password_hash : "{{ ldap_passwds.results[1].stdout }}"
+#     app_readonly_password_hash : "{{ ldap_passwds.results[2].stdout }}"
+#     app_readwrite_password_hash : "{{ ldap_passwds.results[3].stdout }}"
+
+# - name: using the template files, create the ldif files on targets /tmp folder
+#   become: true
+#   template:
+#     src: "{{ item }}"
+#     dest: "/tmp/{{ item }}"
+#     mode: 0644
+#   with_items:
+#     - "change.ldapadmin.password.ldif"
+#     - "change.domain.ldif"
+#     - "base.domain.ldif"
+
+# - name: using the template files, save the hashes on targets /tmp folder
+#   become: true
+#   template:
+#     src: "password.hashes.txt"
+#     dest: "/tmp/password.hashes.txt"
+#     mode: 0400
+
+# - name: add ldap admin, default schemas, change domain via ldapadd
+#   become: true
+#   shell: /usr/bin/ldapadd -Y EXTERNAL -H ldapi:/// -f {{ item }}
+#   ignore_errors: yes
+#   with_items:
+#     - /tmp/change.ldapadmin.password.ldif
+#     - /etc/openldap/schema/cosine.ldif 
+#     - /etc/openldap/schema/nis.ldif
+#     - /etc/openldap/schema/inetorgperson.ldif
+#     - /tmp/change.domain.ldif 
+
+# - name: add org/user/groups entities via ldapadd
+#   command: /usr/bin/ldapadd -x -D cn={{ ldap_admin }},dc={{ ldap_org_name }},dc={{ ldap_org_type }} -w {{ ldap_admin_password }} -f /tmp/base.domain.ldif
+

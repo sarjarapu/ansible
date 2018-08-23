@@ -5,8 +5,9 @@
 #   tasks:
 #     - include_role:
 #         name: aws
+#       vars:
 #         group_name: "opsmgr"
-#         instance_type: "t2.xlarge"
+#         instance_type: "t2.2xlarge"
 #       with_items:
 #         - "1"
 #         - "2"
@@ -21,25 +22,22 @@
 #         name: mongo
 #       vars:
 #         replset_name: "appdb"
+#         mongo_version: "4.0.1"
 #         mongo_port: "27000"
 #         mongod_config_path: "/etc/mongod.conf"
-#         bind_ip: "{{private_ip}}"
 
-# - name: create appdb replicaset
-#   hosts: "ska_opsmgr_appdb[0]"
-#   vars:
-#     mongo_port: "27000"
-#     bind_ip: "{{private_ip}}"
-#     members: 
-#         - "{{hostvars[groups.ska_opsmgr_appdb[1]].private_dns}}"
-#         - "{{hostvars[groups.ska_opsmgr_appdb[2]].private_dns}}"
-#   tasks:
-#     - include_role:
-#         name: mongo
-#         tasks_from: "initiate.replicaset"
-#     - include_role:
-#         name: mongo
-#         tasks_from: "create.users"
+- name: create appdb replicaset
+  hosts: "ska_opsmgr_appdb[0]"
+  vars:
+    mongo_port: "27000"
+    replset_name: "appdb"
+    members: 
+        - "{{hostvars[groups.ska_opsmgr_appdb[1]].private_dns}}"
+        - "{{hostvars[groups.ska_opsmgr_appdb[2]].private_dns}}"
+  tasks:
+    - include_role:
+        name: mongo
+        tasks_from: "initiate.replicaset"
 
 # - name: enable security in the mongod.conf and restart 
 #   hosts: "ska_opsmgr_appdb"
@@ -56,6 +54,7 @@
 #         tasks_from: "mountdata.copyfiles"
 #       vars:
 #         replset_name: "oplogdb"
+#         mongo_version: "4.0.1"
 #         mongo_port: "27001"
 #         mongod_config_path: "/etc/mongod-oplog.conf"
 #         bind_ip: "{{private_ip}}"
@@ -103,9 +102,9 @@
 #         tasks_from: web
 
 
-- name: install automation agent in mongo servers
-  hosts: "ska_ors_mongo"
-  tasks:
-    - include_role:
-        name: opsmanager
-        tasks_from: automation.agent
+# - name: install automation agent in mongo servers
+#   hosts: "ska_ors_mongo"
+#   tasks:
+#     - include_role:
+#         name: opsmanager
+#         tasks_from: automation.agent
