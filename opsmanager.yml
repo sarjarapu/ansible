@@ -26,25 +26,18 @@
 #         mongo_port: "27000"
 #         mongod_config_path: "/etc/mongod.conf"
 
-- name: create appdb replicaset
-  hosts: "ska_opsmgr_appdb[0]"
-  vars:
-    mongo_port: "27000"
-    replset_name: "appdb"
-    members: 
-        - "{{hostvars[groups.ska_opsmgr_appdb[1]].private_dns}}"
-        - "{{hostvars[groups.ska_opsmgr_appdb[2]].private_dns}}"
-  tasks:
-    - include_role:
-        name: mongo
-        tasks_from: "initiate.replicaset"
-
-# - name: enable security in the mongod.conf and restart 
-#   hosts: "ska_opsmgr_appdb"
+# - name: create appdb replicaset
+#   hosts: "ska_opsmgr_appdb[0]"
+#   vars:
+#     mongo_port: "27000"
+#     replset_name: "appdb"
+#     members: 
+#         - "{{hostvars[groups.ska_opsmgr_appdb[1]].private_dns}}"
+#         - "{{hostvars[groups.ska_opsmgr_appdb[2]].private_dns}}"
 #   tasks:
 #     - include_role:
 #         name: mongo
-#         tasks_from: "enable.security"
+#         tasks_from: "initiate.replicaset"
 
 # - name: install mongodb for servers in oplog replicaset
 #   hosts: "ska_opsmgr_oplogdb"
@@ -55,56 +48,95 @@
 #       vars:
 #         replset_name: "oplogdb"
 #         mongo_version: "4.0.1"
-#         mongo_port: "27001"
+#         mongo_port: "28000"
 #         mongod_config_path: "/etc/mongod-oplog.conf"
-#         bind_ip: "{{private_ip}}"
-#     - name: create oplog service and start it
+#         oplog_size_mb: 5120
+#     - name: create oplog systemctl service and start it
 #       include_role:
 #         name: opsmanager
 #         tasks_from: "oplog.service"
 
-# - name: create oplogdb replicaset, create users
-#   hosts: "ska_opsmgr_oplogdb[0]"
+# - name: create oplogdb replicaset
+#   hosts: "ska_opsmgr_oplogdb[1]"
 #   vars:
-#     mongo_port: "27001"
-#     bind_ip: "{{private_ip}}"
+#     mongo_port: "28000"
+#     replset_name: "oplogdb"
 #     members: 
-#         - "{{hostvars[groups.ska_opsmgr_oplogdb[1]].private_dns}}"
+#         - "{{hostvars[groups.ska_opsmgr_oplogdb[0]].private_dns}}"
 #         - "{{hostvars[groups.ska_opsmgr_oplogdb[2]].private_dns}}"
 #   tasks:
 #     - include_role:
 #         name: mongo
 #         tasks_from: "initiate.replicaset"
-#     - include_role:
-#         name: mongo
-#         tasks_from: "create.users"
 
-# - name: enable security in the mongod-oplog.conf and restart 
-#   hosts: "ska_opsmgr_oplogdb"
-#   vars:
-#     mongod_config_path: "/etc/mongod-oplog.conf"
-#     mongod_service: "mongod-oplog"
-#   tasks:
-#     - include_role:
-#         name: mongo
-#         tasks_from: "enable.security"
+- name: install ops manager web
+  hosts: "ska_opsmgr_web"
+  vars:
+    appdb_members: 
+        - "{{hostvars[groups.ska_opsmgr_appdb[0]].private_dns}}"
+        - "{{hostvars[groups.ska_opsmgr_appdb[1]].private_dns}}"
+        - "{{hostvars[groups.ska_opsmgr_appdb[2]].private_dns}}"
+  tasks:
+    - include_role:
+        name: opsmanager
+        tasks_from: web
 
-# - name: install and configure ops manager web
-#   hosts: "ska_opsmgr_web"
-#   vars:
-#     appdb_members: 
-#         - "{{hostvars[groups.ska_opsmgr_appdb[0]].private_dns}}"
-#         - "{{hostvars[groups.ska_opsmgr_appdb[1]].private_dns}}"
-#         - "{{hostvars[groups.ska_opsmgr_appdb[2]].private_dns}}"
+- name: start ops manager on first web server
+  hosts: "ska_opsmgr_web[0]"
+  tasks:
+    - include_role:
+        name: opsmanager
+        tasks_from: start.mms
+
+# ## The first time it takes about good 3 mins
+# ## 2018-08-23T12:26:03
+# ## 
+# - name: start ops manager on the other web servers
+#   hosts: "ska_opsmgr_web[1:]"
 #   tasks:
 #     - include_role:
 #         name: opsmanager
-#         tasks_from: web
+#         tasks_from: start.mms
 
+## Load balancer URL. Make sure all the instances are healthy 
+## before hooking up the lb url to the opsmanager config
+# ska-lb-01-1773648879.us-west-2.elb.amazonaws.com
+# X-Forwarded-For
+# requires restart of the service
+# sudo systemctl stop mongodb-mms
 
+# - name: provision aws instance for automation agents to run
+#   hosts: local
+#   tasks:
+#     - include_role:
+#         name: aws
+#       vars:
+#         group_name: "mon"
+#         instance_type: "t2.medium"
+#       with_items:
+#         - "1"
+#         - "2"
+#         - "3"
+#       loop_control:
+#         loop_var: server_number
+
+# create head-db and snapshot store (ideally S3)
+# sudo mkdir -p  /app/headdb
+# sudo mkdir -p  /app/snapshots
+# sudo chown mongodb-mms:mongodb-mms -R /app/headdb
+# sudo chown mongodb-mms:mongodb-mms -R /app/snapshots
+# mongodb://superuser:supersecret@ip-172-31-6-73.us-west-2.compute.internal:28000,ip-172-31-0-160.us-west-2.compute.internal:28000,ip-172-31-11-139.us-west-2.compute.internal:28000/?authSource=admin&replicaSet=oplogdb&maxPoolSize=150
 # - name: install automation agent in mongo servers
 #   hosts: "ska_ors_mongo"
 #   tasks:
 #     - include_role:
 #         name: opsmanager
 #         tasks_from: automation.agent
+#       vars:
+#         opsmanager_uri: "http://54.149.158.58:8080"
+#         automation_agent_version: "5.4.7.5469-1.x86_64.rhel7"
+#         mms_group_id: "5b7eabd8be76a20e043b1a5a"
+#         mms_api_key: "5b7eadb7be76a20e043b1b84b16e358d32e712c43ca02213d89aa44f"
+
+
+

@@ -1,12 +1,14 @@
 ---
 # defaults file for opsmanager
-opsmgr_version: "3.4.7.479-1"
+opsmgr_version: "4.0.0.49984.20180625T1427Z-1"
 replicaset_appdb: "appdb"
 replicaset_oplogdb: "oplogdb"
 port_appdb: "27000"
-port_oplogdb: "27001"
+port_oplogdb: "28000"
 data_folder: "/data"
 root_username: "superuser"
-root_password: "password"
+root_password: "supersecret"
 opsmanager_uri: "http://ec2-54-214-214-22.us-west-2.compute.amazonaws.com:8080"
 automation_agent_version: "3.2.14.2187-1.x86_64.rhel7"
+mms_group_id: "5998d2fcbba0ea27746e067d"
+mms_api_key: "747862e5601e5eda9ff73077cb69d331"

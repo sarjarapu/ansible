@@ -2,12 +2,19 @@
 localhost ansible_connection=local ansible_python_interpreter=python
 
 [ska_opsmgr]
-ec2-54-149-158-58.us-west-2.compute.amazonaws.com instance_name=ska_opsmgr_1 private_dns=ip-172-31-6-73.us-west-2.compute.internal private_ip=172.31.6.73
-ec2-18-237-152-159.us-west-2.compute.amazonaws.com instance_name=ska_opsmgr_2 private_dns=ip-172-31-0-160.us-west-2.compute.internal private_ip=172.31.0.160
-ec2-54-190-25-145.us-west-2.compute.amazonaws.com instance_name=ska_opsmgr_3 private_dns=ip-172-31-11-139.us-west-2.compute.internal private_ip=172.31.11.139
+ec2-34-215-98-116.us-west-2.compute.amazonaws.com instance_name=ska_opsmgr_3 private_dns=ip-172-31-14-10.us-west-2.compute.internal private_ip=172.31.14.10
+ec2-34-222-163-171.us-west-2.compute.amazonaws.com instance_name=ska_opsmgr_2 private_dns=ip-172-31-6-98.us-west-2.compute.internal private_ip=172.31.6.98
+ec2-52-25-154-38.us-west-2.compute.amazonaws.com instance_name=ska_opsmgr_1 private_dns=ip-172-31-4-211.us-west-2.compute.internal private_ip=172.31.4.211
+
+
 
 [ska_opsmgr_appdb:children]
 ska_opsmgr
 
 [ska_opsmgr_oplogdb:children]
 ska_opsmgr
+
+[ska_opsmgr_web:children]
+ska_opsmgr
+
+[ska_ors_mongo]

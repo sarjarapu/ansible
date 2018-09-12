@@ -20,7 +20,7 @@
     filesystem:
       fstype: xfs
       dev: /dev/xvdb
-      force: True
+      ## force: True
       # CAUTION: never use force: True, unless you are playing around
 
   - name: create {{ app_mount_path }} folder at root

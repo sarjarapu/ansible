@@ -1,0 +1,8 @@
+---
+
+- name: start and enable mongodb-mms service
+  become: true
+  service:
+    name: mongodb-mms
+    state: started
+    enabled: yes

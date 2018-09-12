@@ -12,3 +12,4 @@ mongod_service: "mongod"
 ssh_wait_timeout: 600
 root_username: "superuser"
 root_password: "supersecret"
+oplog_size_mb: 2048

@@ -8,16 +8,18 @@
     name: "https://downloads.mongodb.com/on-prem-mms/rpm/mongodb-mms-{{opsmgr_version}}.x86_64.rpm"
     state: present
 
-- name: replace mongod.pid to mongod-oplog.pid in mongod-oplog.conf file
+- name: replace mongoUri with appdb connection string in conf-mms.properties file
   become: true
   replace:
     path: /opt/mongodb/mms/conf/conf-mms.properties
     regexp: '^mongo.mongoUri=.+$'
     replace: 'mongo.mongoUri=mongodb://{{root_username}}:{{root_password}}@{{appdb_members | join(":27000,")}}/?authSource=admin&replicaSet={{replicaset_appdb}}&maxPoolSize=150'
 
-- name: start and enable mongodb-mms service
+- name: copy the mongodb-mms gen key file
   become: true
-  service:
-    name: mongodb-mms
-    state: started
-    enabled: yes
+  copy:
+    src: mms-gen.key
+    dest: "/etc/mongodb-mms/gen.key"
+    mode: 0400
+    owner: mongodb-mms
+    group: mongodb-mms
