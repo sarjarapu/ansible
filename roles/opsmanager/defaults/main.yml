@@ -1,6 +1,6 @@
 ---
 # defaults file for opsmanager
-opsmgr_version: "4.0.0.49984.20180625T1427Z-1"
+opsmgr_version: "4.0.2.50187.20180905T1454Z-1"
 replicaset_appdb: "appdb"
 replicaset_oplogdb: "oplogdb"
 port_appdb: "27000"

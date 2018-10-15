@@ -1,73 +1,58 @@
 ---
 
-# - name: provision aws instance for ops manager
-#   hosts: local
-#   tasks:
-#     - include_role:
-#         name: aws
-#       vars:
-#         group_name: "opsmgr"
-#         instance_type: "t2.2xlarge"
-#       with_items:
-#         - "1"
-#         - "2"
-#         - "3"
-#       loop_control:
-#         loop_var: server_number  
+- name: install mongodb for servers in appdb replicaset
+  hosts: "ska_opsmgr_appdb"
+  tasks:
+    - include_role:
+        name: mongo
+      vars:
+        replset_name: "appdb"
+        mongo_version: "4.0.2"
+        mongo_port: "27000"
+        mongod_config_path: "/etc/mongod.conf"
 
-# - name: install mongodb for servers in appdb replicaset
-#   hosts: "ska_opsmgr_appdb"
-#   tasks:
-#     - include_role:
-#         name: mongo
-#       vars:
-#         replset_name: "appdb"
-#         mongo_version: "4.0.1"
-#         mongo_port: "27000"
-#         mongod_config_path: "/etc/mongod.conf"
+- name: create appdb replicaset
+  hosts: "ska_opsmgr_appdb[0]"
+  vars:
+    mongo_port: "27000"
+    replset_name: "appdb"
+    members: 
+        - "{{hostvars[groups.ska_opsmgr_appdb[1]].private_dns}}"
+        - "{{hostvars[groups.ska_opsmgr_appdb[2]].private_dns}}"
+  tasks:
+    - include_role:
+        name: mongo
+        tasks_from: "initiate.replicaset"
 
-# - name: create appdb replicaset
-#   hosts: "ska_opsmgr_appdb[0]"
-#   vars:
-#     mongo_port: "27000"
-#     replset_name: "appdb"
-#     members: 
-#         - "{{hostvars[groups.ska_opsmgr_appdb[1]].private_dns}}"
-#         - "{{hostvars[groups.ska_opsmgr_appdb[2]].private_dns}}"
-#   tasks:
-#     - include_role:
-#         name: mongo
-#         tasks_from: "initiate.replicaset"
+- name: install mongodb for servers in oplog replicaset
+  hosts: "ska_opsmgr_oplogdb"
+  tasks:
+    - include_role:
+        name: mongo
+        tasks_from: "mountdata.copyfiles"
+      vars:
+        replset_name: "oplogdb"
+        mongo_version: "4.0.2"
+        mongo_port: "28000"
+        mongod_config_path: "/etc/mongod-oplog.conf"
+        oplog_size_mb: 5120
+    - name: create oplog systemctl service and start it
+      include_role:
+        name: opsmanager
+        tasks_from: "oplog.service"
 
-# - name: install mongodb for servers in oplog replicaset
-#   hosts: "ska_opsmgr_oplogdb"
-#   tasks:
-#     - include_role:
-#         name: mongo
-#         tasks_from: "mountdata.copyfiles"
-#       vars:
-#         replset_name: "oplogdb"
-#         mongo_version: "4.0.1"
-#         mongo_port: "28000"
-#         mongod_config_path: "/etc/mongod-oplog.conf"
-#         oplog_size_mb: 5120
-#     - name: create oplog systemctl service and start it
-#       include_role:
-#         name: opsmanager
-#         tasks_from: "oplog.service"
-
-# - name: create oplogdb replicaset
-#   hosts: "ska_opsmgr_oplogdb[1]"
-#   vars:
-#     mongo_port: "28000"
-#     replset_name: "oplogdb"
-#     members: 
-#         - "{{hostvars[groups.ska_opsmgr_oplogdb[0]].private_dns}}"
-#         - "{{hostvars[groups.ska_opsmgr_oplogdb[2]].private_dns}}"
-#   tasks:
-#     - include_role:
-#         name: mongo
-#         tasks_from: "initiate.replicaset"
+- name: create oplogdb replicaset
+  hosts: "ska_opsmgr_oplogdb[1]"
+  vars:
+    mongo_port: "28000"
+    replset_name: "oplogdb"
+    members: 
+        - "{{hostvars[groups.ska_opsmgr_oplogdb[0]].private_dns}}"
+        - "{{hostvars[groups.ska_opsmgr_oplogdb[2]].private_dns}}"
+  tasks:
+    - include_role:
+        name: mongo
+        tasks_from: "initiate.replicaset"
 
 - name: install ops manager web
   hosts: "ska_opsmgr_web"
