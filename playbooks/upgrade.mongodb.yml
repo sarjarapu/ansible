@@ -1,0 +1,13 @@
+---
+- name: download and extract the mongodb version binaries
+  hosts: mongo_replicaset
+  tasks:
+    - include_role:
+        name: "upgrade-mongo"
+        tasks_from: "download.binaries"
+
+# connect to one of the server, get secondaries
+# with_items on secondaries, stop service, switch the service link,  start service, give it 30 seconds
+
+# step down primary
+# repeat the above step
