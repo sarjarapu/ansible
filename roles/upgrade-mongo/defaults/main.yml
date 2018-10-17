@@ -1,12 +1,22 @@
 ---
-proxy_http: ""
-proxy_https: ""
-use_proxy: false
 target_version: "4.0.0"
-service_name: "mongod"
+
+################################################
+# Do not change anything below this line
+################################################
 binary_filename: "mongodb-linux-x86_64-rhel70-{{target_version}}"
 tgz_filename: "{{binary_filename}}.tgz"
 download_uri: "https://fastdl.mongodb.org/linux/{{tgz_filename}}"
 releases_dir: "/opt/mongodb"
+bin_path: "{{releases_dir}}/mongodb-linux-x86_64-rhel70-{{current_version}}/bin"
+
+service_name: "mongod"
+service_filepath: "/etc/systemd/system/{{service_name}}.service"
+
 runas_service_user: "mongod" #servicepmongo
-runas_service_group: "mongod" #
+runas_service_group: "mongod" #dbamongodb
+admin_user: "admin"
+admin_password: "password"
+
+wait_for_time: 30
+################################################

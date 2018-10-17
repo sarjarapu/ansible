@@ -1,0 +1,49 @@
+---
+- name: connect to MongoDB server and capture isMaster command output
+  shell: "{{bin_path}}/mongo admin --quiet --host {{host}} --port {{port}} -u {{admin_user}} -p {{admin_password}} --eval 'rs.isMaster().ismaster;'"
+  register: is_master_output
+
+- name: set the host level variable for is_primary
+  set_fact:
+    is_primary: "{{is_master_output.stdout}}"
+
+- name: connect to the MongoDB server and run db.version() command
+  shell: "{{bin_path}}/mongo admin --quiet --host {{host}} --port {{port}} -u {{admin_user}} -p {{admin_password}} --eval 'db.version();'"
+  register: db_version_output
+
+- name: set the host level variable for is_primary
+  set_fact:
+    mongod_version: "{{db_version_output.stdout}}"
+
+- block:
+  - name: "detected a non-primary server [{{inventory_hostname}}] with mongod version [{{mongod_version}}] not matching target version [{{target_version}}]"
+    debug: msg="{{inventory_hostname}} {{is_primary}} {{mongod_version}} {{target_version}}"
+
+  - name: "stop the mongod service [{{service_name}}] on [{{inventory_hostname}}]"
+    become: true
+    service:
+      name: "{{service_name}}"
+      state: stopped
+      enabled: yes
+
+  - name: "update the service file {{service_filepath}} to use the target version"
+    become: True
+    lineinfile:
+      path: "{{service_filepath}}"
+      regexp: "^ExecStart=/opt/.*$"
+      line: "ExecStart=/opt/mongodb/mongodb-linux-x86_64-rhel70-{{target_version}}/bin/mongod $OPTIONS"
+      create: True
+
+  - name: "start the mongod service [{{service_name}}] on [{{inventory_hostname}}]"
+    become: true
+    service:
+      name: "{{service_name}}"
+      state: started
+      enabled: yes
+      daemon_reload: yes
+
+  - name: "wait for port {{port}} to be available. don't start checking for 30 seconds"
+    wait_for:
+      port: "{{port}}"
+      delay: "{{wait_for_time}}"
+  when: "(mongod_version != target_version) and (is_primary == False)"

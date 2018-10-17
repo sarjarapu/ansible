@@ -1,0 +1,30 @@
+---
+- name: connect to MongoDB server and capture isMaster command output
+  shell: "{{bin_path}}/mongo admin --quiet --host {{host}} --port {{port}} -u {{admin_user}} -p {{admin_password}} --eval 'rs.isMaster().ismaster;'"
+  register: is_master_output
+
+- name: set the host level variable for is_primary
+  set_fact:
+    is_primary: "{{is_master_output.stdout}}"
+
+- name: connect to the MongoDB server and run db.version() command
+  shell: "{{bin_path}}/mongo admin --quiet --host {{host}} --port {{port}} -u {{admin_user}} -p {{admin_password}} --eval 'db.version();'"
+  register: db_version_output
+
+- name: set the host level variable for is_primary
+  set_fact:
+    mongod_version: "{{db_version_output.stdout}}"
+
+- block:
+  - name: "step down the primary"
+    shell: "{{bin_path}}/mongo admin --quiet --host {{host}} --port {{port}} -u {{admin_user}} -p {{admin_password}} --eval 'rs.stepDown()'"
+    ignore_errors: yes 
+    vars:
+      current_version: "4.0.0"
+      target_version: "4.0.1"
+
+  - name: "wait for port {{port}} to be available. don't start checking for 30 seconds"
+    wait_for:
+      port: "{{port}}"
+      delay: "{{wait_for_time}}"
+  when: "(mongod_version != target_version) and (is_primary == True)"

@@ -18,6 +18,6 @@ ska_opsmgr
 [ska_ors_mongo]
 
 [mongo_replicaset]
-ec2-34-222-48-57.us-west-2.compute.amazonaws.com service_name=mongod host=ip-172-31-28-26.us-west-2.compute.internal port=27000
-ec2-54-187-232-235.us-west-2.compute.amazonaws.com service_name=mongod host=ip-172-31-31-201.us-west-2.compute.internal port=27000
-ec2-54-213-246-203.us-west-2.compute.amazonaws.com service_name=mongod host=ip-172-31-27-100.us-west-2.compute.internal port=27000
+ec2-34-222-48-57.us-west-2.compute.amazonaws.com service_name=mongod host=ip-172-31-28-26.us-west-2.compute.internal port=27017
+ec2-54-187-232-235.us-west-2.compute.amazonaws.com service_name=mongod host=ip-172-31-31-201.us-west-2.compute.internal port=27017
+ec2-54-213-246-203.us-west-2.compute.amazonaws.com service_name=mongod host=ip-172-31-27-100.us-west-2.compute.internal port=27017

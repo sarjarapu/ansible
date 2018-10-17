@@ -18,7 +18,6 @@
       owner: "{{runas_service_user}}"
       group: "{{runas_service_group}}"
       force: yes 
-    with_items: "{{groups[host_groupname]}}"
 
   - name: untar the binaries as mongod user
     become: yes
