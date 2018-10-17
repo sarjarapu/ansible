@@ -1,14 +1,43 @@
 ---
-- name: download and extract the mongodb version binaries
+
+- name: upgrade the secondaries
   hosts: mongo_replicaset
-  serial: 1
   tasks:
-    - include_role: 
-        name: "upgrade-mongo"
-      vars:
+    - set_fact:
         current_version: "4.0.0"
         target_version: "4.0.1"
+        primary_turn: False
+    - include_role:
+        name: "upgrade-mongo"
+        tasks_from: "download.binaries"
+    - include_role:
+        name: "upgrade-mongo"
+        tasks_from: "load.status"
 
+- name: upgrade the secondaries
+  hosts: mongo_replicaset
+  serial: 1
+  roles:
+    - role: "upgrade-mongo"
+
+- name: upgrade the primary
+  hosts: mongo_replicaset
+  tasks:
+    - set_fact:
+        primary_turn: True
+    - include_role: 
+        name: "upgrade-mongo"
+
+# - name: download and extract the mongodb version binaries
+#   hosts: mongo_replicaset
+#   serial: 1
+#   vars:
+#     current_version: "4.0.0"
+#     target_version: "4.0.1"
+#     primary_turn: True
+#   tasks:
+#     - include_role: 
+#         name: "upgrade-mongo"
 
 # - name: download and extract the mongodb version binaries
 #   hosts: mongo_replicaset

@@ -1,0 +1,17 @@
+---
+
+- name: copy command.js file to /tmp directory
+  copy:
+    src: command.js
+    dest: /tmp/command.js
+    force: yes
+  become: true
+
+- name: capture command file's output
+  shell: "{{bin_path}}/mongo admin --quiet --host {{host}} --port {{port}} -u {{admin_user}} -p {{admin_password}} < /tmp/command.js"
+  register: output
+
+- name: set the host variables with command output
+  set_fact:
+    mongod_version: "{{output.stdout_lines[0]}}"
+    is_primary: "{{output.stdout_lines[1]}}"

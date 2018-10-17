@@ -11,3 +11,6 @@
     port: "{{port}}"
     delay: "{{wait_for_time}}"
   listen: restart mongod
+
+- name: step down primary
+  debug: msg="i need to figure out the process here!"

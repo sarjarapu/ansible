@@ -19,4 +19,5 @@ admin_user: "admin"
 admin_password: "password"
 
 wait_for_time: 30
+primary_turn: False
 ################################################
