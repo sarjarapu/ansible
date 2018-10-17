@@ -1,49 +1,6 @@
 ---
-- name: print the replica set name injected
-  debug: msg="replica set name {{item}} - {{hostvars[item].host}}"
-  with_items: "{{groups[host_groupname]}}"
 
-# - name: download the binaries from internet to releases dir
-#   become: true
-#   # environment:
-#   #   http_proxy: http://proxy.bos.example.com:8080
-#   #   https_proxy: http://proxy.bos.example.com:8080
-#   get_url:
-#     url: "{{download_uri}}"
-#     dest: "{{releases_dir}}/{{tgz_filename}}"
-#     mode: 0600
-#     owner: "{{runas_service_user}}"
-#     group: "{{runas_service_group}}"
-#     force: yes 
-#   with_items: "{{groups[host_groupname]}}"
-
-
-# - name: print the input arguments from the hosts file
-#   debug: msg="host [{{host}}] port [{{port}}] service name [{{service_name}}]"
-
-# - name: download the binaries from internet to releases dir
-#   become: true
-#   # environment:
-#   #   http_proxy: http://proxy.bos.example.com:8080
-#   #   https_proxy: http://proxy.bos.example.com:8080
-#   get_url:
-#     url: "{{download_uri}}"
-#     dest: "{{releases_dir}}/{{tgz_filename}}"
-#     mode: 0600
-#     owner: "{{runas_service_user}}"
-#     group: "{{runas_service_group}}"
-#     force: yes
-
-# - name: untar the binaries as mongod user
-#   become: yes
-#   become_user: "{{runas_service_user}}"
-#   unarchive:
-#     src: "{{releases_dir}}/{{tgz_filename}}"
-#     dest: "{{releases_dir}}"
-#     remote_src: yes
-
-# - name: delete the downloaded binaries tar file
-#   become: yes
-#   file:
-#     path: "{{releases_dir}}/{{tgz_filename}}"
-#     state: absent
+- import_tasks: download.binaries.yml
+- import_tasks: upgrade.secondary.yml
+# - import_tasks: stepdown.primary.yml
+# - import_tasks: upgrade.secondary.yml

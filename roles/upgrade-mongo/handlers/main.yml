@@ -1,0 +1,13 @@
+- name: restart mongod
+  become: true
+  service:
+    name: "{{service_name}}"
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+
+- name: wait for port
+  wait_for:
+    port: "{{port}}"
+    delay: "{{wait_for_time}}"
+  listen: restart mongod

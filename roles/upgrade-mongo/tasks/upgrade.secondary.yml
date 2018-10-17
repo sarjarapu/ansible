@@ -19,12 +19,12 @@
   - name: "detected a non-primary server [{{inventory_hostname}}] with mongod version [{{mongod_version}}] not matching target version [{{target_version}}]"
     debug: msg="{{inventory_hostname}} {{is_primary}} {{mongod_version}} {{target_version}}"
 
-  - name: "stop the mongod service [{{service_name}}] on [{{inventory_hostname}}]"
-    become: true
-    service:
-      name: "{{service_name}}"
-      state: stopped
-      enabled: yes
+  # - name: "stop the mongod service [{{service_name}}] on [{{inventory_hostname}}]"
+  #   become: true
+  #   service:
+  #     name: "{{service_name}}"
+  #     state: stopped
+  #     enabled: yes
 
   - name: "update the service file {{service_filepath}} to use the target version"
     become: True
@@ -33,17 +33,20 @@
       regexp: "^ExecStart=/opt/.*$"
       line: "ExecStart=/opt/mongodb/mongodb-linux-x86_64-rhel70-{{target_version}}/bin/mongod $OPTIONS"
       create: True
+    notify:
+      - restart mongod
 
-  - name: "start the mongod service [{{service_name}}] on [{{inventory_hostname}}]"
-    become: true
-    service:
-      name: "{{service_name}}"
-      state: started
-      enabled: yes
-      daemon_reload: yes
+  # - name: "start the mongod service [{{service_name}}] on [{{inventory_hostname}}]"
+  #   become: true
+  #   service:
+  #     name: "{{service_name}}"
+  #     state: started
+  #     enabled: yes
+  #     daemon_reload: yes
 
-  - name: "wait for port {{port}} to be available. don't start checking for 30 seconds"
-    wait_for:
-      port: "{{port}}"
-      delay: "{{wait_for_time}}"
+  # - name: "wait for port {{port}} to be available. don't start checking for 30 seconds"
+  #   wait_for:
+  #     port: "{{port}}"
+  #     delay: "{{wait_for_time}}"
+  
   when: "(mongod_version != target_version) and (is_primary == False)"

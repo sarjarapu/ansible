@@ -19,9 +19,6 @@
   - name: "step down the primary"
     shell: "{{bin_path}}/mongo admin --quiet --host {{host}} --port {{port}} -u {{admin_user}} -p {{admin_password}} --eval 'rs.stepDown()'"
     ignore_errors: yes 
-    vars:
-      current_version: "4.0.0"
-      target_version: "4.0.1"
 
   - name: "wait for port {{port}} to be available. don't start checking for 30 seconds"
     wait_for:

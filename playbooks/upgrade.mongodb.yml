@@ -1,4 +1,15 @@
 ---
+- name: download and extract the mongodb version binaries
+  hosts: mongo_replicaset
+  serial: 1
+  tasks:
+    - include_role: 
+        name: "upgrade-mongo"
+      vars:
+        current_version: "4.0.0"
+        target_version: "4.0.1"
+
+
 # - name: download and extract the mongodb version binaries
 #   hosts: mongo_replicaset
 #   tasks:
@@ -6,7 +17,7 @@
 #         name: "upgrade-mongo"
 #         tasks_from: "download.binaries"
 #       vars:
-#         target_version: "4.0.1"
+#         target_version: "4.0.0"
 
 # - name: connect each host and set is_primary flag
 #   hosts: "mongo_replicaset"
@@ -20,27 +31,27 @@
 #         name: "upgrade-mongo"
 #         tasks_from: "upgrade.secondary"
 
-- name: connect each host and set is_primary flag
-  hosts: "mongo_replicaset"
-  serial: 1
-  vars:
-    current_version: "4.0.0"
-    target_version: "4.0.1"
-  tasks:
-    - name: "step down the current primary"
-      include_role:
-        name: "upgrade-mongo"
-        tasks_from: "stepdown.primary"
+# - name: connect each host and set is_primary flag
+#   hosts: "mongo_replicaset"
+#   serial: 1
+#   vars:
+#     current_version: "4.0.0"
+#     target_version: "4.0.1"
+#   tasks:
+#     - name: "step down the current primary"
+#       include_role:
+#         name: "upgrade-mongo"
+#         tasks_from: "stepdown.primary"
 
-- name: connect each host and set is_primary flag
-  hosts: "mongo_replicaset"
-  serial: 1
-  vars:
-    current_version: "4.0.0"
-    target_version: "4.0.1"
-  tasks:
-    - name: "upgrade the previous primary"
-      include_role:
-        name: "upgrade-mongo"
-        tasks_from: "upgrade.secondary"
+# - name: connect each host and set is_primary flag
+#   hosts: "mongo_replicaset"
+#   serial: 1
+#   vars:
+#     current_version: "4.0.0"
+#     target_version: "4.0.1"
+#   tasks:
+#     - name: "upgrade the previous primary"
+#       include_role:
+#         name: "upgrade-mongo"
+#         tasks_from: "upgrade.secondary"
         
