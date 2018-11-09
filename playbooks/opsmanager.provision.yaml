@@ -7,7 +7,7 @@
         name: aws
       vars:
         group_name: "opsmgr"
-        instance_type: "t3.large"
+        instance_type: "t2.large"
         data_vol_size: 60
       with_items:
         - "1"

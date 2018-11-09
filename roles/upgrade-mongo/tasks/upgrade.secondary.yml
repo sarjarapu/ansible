@@ -1,18 +1,12 @@
 ---
 
-- block:
-  - name: print debug information about the server
-    debug: msg="host {{inventory_hostname}} => primary - {{is_primary}}, current_version - {{mongod_version}} target_versiON {{target_version}}"
-
-  - name: "update service {{service_filepath}} to use newer version"
-    become: True
-    lineinfile:
-      path: "{{service_filepath}}"
-      regexp: "^ExecStart=/opt/.*$"
-      line: "ExecStart=/opt/mongodb/mongodb-linux-x86_64-rhel70-{{target_version}}/bin/mongod $OPTIONS"
-      create: True
-    changed_when: True
-    notify:
-      - restart mongod
-
-  when: "(mongod_version != target_version) and (is_primary == False)"
+- name: "update service {{service_filepath}} to use newer version"
+  become: True
+  lineinfile:
+    path: "{{service_filepath}}"
+    regexp: "^ExecStart=/opt/.*$"
+    line: "ExecStart=/opt/mongodb/mongodb-linux-x86_64-rhel70-{{target_version}}/bin/mongod $OPTIONS"
+    create: True
+  changed_when: True
+  notify:
+    - restart mongod

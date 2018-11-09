@@ -1,19 +1,11 @@
 ---
-
-- block:
-  - name: upgrade only if secondary server and it's secondarys turn - {{primary_turn == False}}
-    debug: msg="host {{inventory_hostname}} => primary - {{is_primary}}, current_version - {{mongod_version}} target_version {{target_version}}"
-    # when: "(mongod_version != target_version) and (is_primary == False)"
-
-  # - import_tasks: download.binaries.yml
-  # - import_tasks: upgrade.secondary.yml
+- name: upgrade only if secondary server and it's secondarys turn - {{primary_turn == False}}
+  import_tasks: upgrade.secondary.yml
   when: (primary_turn == False) and (mongod_version != target_version) and (is_primary == False)
 
 - block:
+  - name: stepdown only if primary server and it's primaries turn - {{primary_turn}}
+    import_tasks: stepdown.primary.yml
   - name: upgrade only if primary server and it's primaries turn - {{primary_turn}}
-    debug: msg="host {{inventory_hostname}} => primary - {{is_primary}}, current_version - {{mongod_version}} target_version {{target_version}}"
-    # when: "(mongod_version != target_version) and (is_primary == True)"
-
-  # - import_tasks: stepdown.primary.yml
-  # - import_tasks: upgrade.secondary.yml
+    import_tasks: upgrade.secondary.yml
   when: (primary_turn == True) and (mongod_version != target_version) and (is_primary == True)

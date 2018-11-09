@@ -1,19 +1,19 @@
 ---
-- name: connect to MongoDB server and capture isMaster command output
-  shell: "{{bin_path}}/mongo admin --quiet --host {{host}} --port {{port}} -u {{admin_user}} -p {{admin_password}} --eval 'rs.isMaster().ismaster;'"
-  register: is_master_output
+# - name: connect to MongoDB server and capture isMaster command output
+#   shell: "{{bin_path}}/mongo admin --quiet --host {{host}} --port {{port}} -u {{admin_user}} -p {{admin_password}} --eval 'rs.isMaster().ismaster;'"
+#   register: is_master_output
 
-- name: set the host level variable for is_primary
-  set_fact:
-    is_primary: "{{is_master_output.stdout}}"
+# - name: set the host level variable for is_primary
+#   set_fact:
+#     is_primary: "{{is_master_output.stdout}}"
 
-- name: connect to the MongoDB server and run db.version() command
-  shell: "{{bin_path}}/mongo admin --quiet --host {{host}} --port {{port}} -u {{admin_user}} -p {{admin_password}} --eval 'db.version();'"
-  register: db_version_output
+# - name: connect to the MongoDB server and run db.version() command
+#   shell: "{{bin_path}}/mongo admin --quiet --host {{host}} --port {{port}} -u {{admin_user}} -p {{admin_password}} --eval 'db.version();'"
+#   register: db_version_output
 
-- name: set the host level variable for is_primary
-  set_fact:
-    mongod_version: "{{db_version_output.stdout}}"
+# - name: set the host level variable for is_primary
+#   set_fact:
+#     mongod_version: "{{db_version_output.stdout}}"
 
 - block:
   - name: "step down the primary"
