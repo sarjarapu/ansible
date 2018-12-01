@@ -1,0 +1,11 @@
+---
+# tasks file for diagnostics
+
+- import_tasks: mdiag.yml
+  when: capture_mdiag == True
+
+- import_tasks: getMongoData.yml
+  when: capture_getmongodata == True
+
+- import_tasks: diagnostics.data.yml
+  when: capture_diagnostics_data == True

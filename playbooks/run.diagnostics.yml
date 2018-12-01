@@ -1,0 +1,6 @@
+---
+
+- name: run the mongo diagnostics on the servers
+  hosts: audit
+  roles:
+    - role: "mongo-diagnostics"

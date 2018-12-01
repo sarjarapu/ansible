@@ -1,0 +1,19 @@
+- name: copy the getMongoData.js file to /tmp
+  copy:
+    src: getMongoData.js
+    dest: "/tmp/getMongoData.js"
+    mode: 0644
+
+- name: capture the hostname
+  shell: "hostname -f"
+  register: hostname
+
+- name: execute the getMongoData.js script via mongo shell
+  become: true
+  shell: "{{mongodb_binaries_path}}/mongo --quiet --norc {{mongo_auth_parameters}} --eval \"var _printJSON=true; var _ref = '{{support_ticket_id}}'\" /tmp/getMongoData.js > /tmp/getMongoData-{{ hostname.stdout }}.json"
+
+- name: download the getMongoData.json output
+  fetch:
+    src: "/tmp/getMongoData-{{ hostname.stdout }}.json"
+    dest: "/tmp/mongo-diagnostics/{{ hostname.stdout }}/getMongoData-{{ hostname.stdout }}.json"
+    flat: yes

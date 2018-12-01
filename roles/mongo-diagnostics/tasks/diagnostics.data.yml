@@ -1,0 +1,30 @@
+- name: capture the hostname
+  shell: "hostname -f"
+  register: hostname
+
+- name: load the contents of the mongod config file into variable 
+  shell: "ps -ef | grep {{ mongod_conf_filename }} | grep -v grep | awk '{print $10}'"
+  register: mongo_config_filepath
+
+- name: load the contents of the mongod config file, {{ mongo_config_filepath.stdout }} into variable 
+  become: yes
+  shell: "cat {{ mongo_config_filepath.stdout }}"
+  register: out_config_file
+
+# - name: print the config file
+#   debug:
+#     msg: "{{ out_config_file }}"
+
+- name: parse the text file and load it as yaml
+  set_fact:
+    out_config_settings: "{{ out_config_file.stdout | from_yaml }}"
+
+- name: set the output values to a variable
+  set_fact:
+    parsed_config:
+      log_path: "{{ out_config_settings.systemLog.path }}"
+      db_path:  "{{ out_config_settings.storage.dbPath }}"
+
+- name: print the log path and dbpath
+  debug:
+    msg: "logpath: {{ parsed_config.log_path }}; dbPath:  {{ parsed_config.db_path }}"

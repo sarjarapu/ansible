@@ -1,0 +1,20 @@
+- name: copy the mdiag file to /tmp
+  copy:
+    src: mdiag.sh
+    dest: "/tmp/mdiag.sh"
+    mode: 0644
+
+- name: capture the hostname
+  shell: "hostname -f"
+  register: hostname
+
+- name: execute the mdiag.sh
+  become: true
+  shell: "bash /tmp/mdiag.sh --json {{support_ticket_id}}"
+  register: output
+
+- name: download the mdiag output
+  fetch:
+    src: "/tmp/mdiag-{{ hostname.stdout }}.json"
+    dest: "/tmp/mongo-diagnostics/{{ hostname.stdout }}/mdiag-{{ hostname.stdout }}.json"
+    flat: yes

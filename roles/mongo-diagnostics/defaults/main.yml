@@ -1,0 +1,9 @@
+---
+# defaults file for diagnostics
+support_ticket_id: "_casereference_"
+capture_mdiag: False
+capture_getmongodata: False
+capture_diagnostics_data: True
+mongodb_binaries_path: "/var/lib/mongodb-mms-automation/bin"
+mongo_auth_parameters: "--port 27017" # -u admrajesh_tiwari -p <password> --authenticationDatabase admin
+mongod_conf_filename: "automation-mongod.conf"
