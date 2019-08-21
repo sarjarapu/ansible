@@ -15,11 +15,11 @@
   register: check_folder
 
 - block:
-  - name: format /dev/xvdb volume as XFS
+  - name: format {{ data_device }} volume as XFS
     become: true
     filesystem:
       fstype: xfs
-      dev: /dev/xvdb
+      dev: "{{ data_device }}"
       ## force: True
       # CAUTION: never use force: True, unless you are playing around
 
@@ -30,11 +30,11 @@
       path: "{{ app_mount_path }}"
       mode: 0755
 
-  - name: mount the device /dev/xvdb as data
+  - name: mount the device {{ data_device }} as data
     become: true
     mount:
       path: "{{ app_mount_path }}"
-      src: /dev/xvdb
+      src: "{{ data_device }}"
       fstype: xfs
       opts: noatime
       state: mounted

@@ -5,7 +5,9 @@ app_mount_path: "/app"
 data_folder: "{{app_mount_path}}/{{replset_name}}"
 log_path: "{{data_folder}}/log"
 mongo_port: "28000"
-swap_device: "/dev/xvdf"
+# swap_device: "/dev/xvdf"
+swap_device: "/dev/nvme2n1" # rhel t3
+data_device: "/dev/nvme1n1" # rhel t3
 mongod_config_path: "/etc/mongod.conf"
 bind_ip: "127.0.0.1,{{private_ip}}"
 mongod_service: "mongod"

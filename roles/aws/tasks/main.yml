@@ -30,12 +30,12 @@
           volume_type: gp2
           volume_size: 10
           delete_on_termination: true
-        - device_name: /dev/xvdb
+        - device_name: "{{ data_device }}"
           volume_type: gp2
           volume_size: "{{ data_vol_size }}"
           delete_on_termination: true
           when: create_data_folder == True
-        - device_name: /dev/xvdf
+        - device_name: "{{ swap_device }}"
           volume_type: gp2
           volume_size: 4
           delete_on_termination: true
@@ -53,7 +53,7 @@
     lineinfile:
       dest: "../hosts"
       regexp: "^{{ create_output.instances.0.public_dns_name }}"
-      insertafter: "{{ server_group_name }}"
+      insertafter: "[{{ server_group_name }}]"
       line: "{{ create_output.instances.0.public_dns_name }}"
       state: present
       create: True
@@ -96,7 +96,7 @@
     lineinfile:
       dest: "../hosts"
       regexp: "^{{ instance_check.instances.0.public_dns_name }}"
-      insertafter: "{{ server_group_name }}"
+      insertafter: "[{{ server_group_name }}]"
       line: "{{ instance_check.instances.0.public_dns_name }} instance_name={{ instance_name }} private_dns={{ instance_check.instances.0.private_dns_name }} private_ip={{ instance_check.instances.0.private_ip_address }}"
       state: present
       create: True

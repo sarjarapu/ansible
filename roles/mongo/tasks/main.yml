@@ -7,12 +7,8 @@
 
 - name: install xfsprogs and xfsdump
   yum: 
-    name: "{{item}}"
+    name: ['xfsprogs', 'xfsdump', 'curl']
     state: present
-  with_items:
-    - xfsprogs
-    - xfsdump
-    - curl
   become: true
 
 - import_tasks: create.swap.yml

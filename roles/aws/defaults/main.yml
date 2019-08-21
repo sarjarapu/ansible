@@ -28,6 +28,8 @@ availability_zone: "{{ region }}c"
 create_data_folder: True
 data_folder: "/app/mongodb"
 swap_location: /etc/xvdf
+swap_device: "/dev/nvme2n1" # rhel t3
+data_device: "/dev/nvme1n1" # rhel t3
 
 # ami instances 
 # redhat_ami: "ami-9fa343e7" # us-west-2

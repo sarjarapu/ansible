@@ -7,7 +7,7 @@
         name: mongo
       vars:
         replset_name: "appdb"
-        mongo_version: "4.0.2"
+        mongo_version: "4.0.12"
         mongo_port: "27000"
         mongod_config_path: "/etc/mongod.conf"
 
@@ -32,7 +32,7 @@
         tasks_from: "mountdata.copyfiles"
       vars:
         replset_name: "oplogdb"
-        mongo_version: "4.0.2"
+        mongo_version: "4.0.12"
         mongo_port: "28000"
         mongod_config_path: "/etc/mongod-oplog.conf"
         oplog_size_mb: 5120

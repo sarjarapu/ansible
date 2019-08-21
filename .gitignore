@@ -3,3 +3,4 @@ hosts
 *.retry
 private.txt
 env
+.DS_Store
