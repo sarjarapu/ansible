@@ -21,15 +21,16 @@ tag_owner: "shyam.arjarapu"
 region: "us-west-2"
 security_key: "ska-play"
 security_group: "ska-sg-aws"
-redhat_ami: "ami-223f945a"
+redhat_ami: "ami-00aa0a1b208ece144" # us-west-2 / oregon
 
 
 availability_zone: "{{ region }}c"
 create_data_folder: True
 data_folder: "/app/mongodb"
 swap_location: /etc/xvdf
-swap_device: "/dev/nvme2n1" # rhel t3
-data_device: "/dev/nvme1n1" # rhel t3
+# swap_device: "/dev/nvme2n1" # rhel t3 nvme
+# data_device: "/dev/nvme1n1" # rhel t3 nvme
 
-# ami instances 
-# redhat_ami: "ami-9fa343e7" # us-west-2
+swap_device: "/dev/xvdf" # rhel t3
+data_device: "/dev/xvdb" # rhel t3
+

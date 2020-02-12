@@ -4,7 +4,7 @@
   become: true
   sysctl:
     name: vm.swappiness
-    value: 10
+    value: "10"
     state: present
     sysctl_set: yes
 
@@ -12,7 +12,7 @@
   become: true
   sysctl:
     name: net.ipv4.tcp_keepalive_time
-    value: 120
+    value: "120"
     state: present
     sysctl_set: yes
 
@@ -20,7 +20,7 @@
   become: true
   sysctl:
     name: kernel.pid_max
-    value: 64000
+    value: "64000"
     state: present
     sysctl_set: yes
 
@@ -28,7 +28,7 @@
   become: true
   sysctl:
     name: kernel.threads-max
-    value: 64000
+    value: "64000"
     state: present
     sysctl_set: yes
 
@@ -36,7 +36,7 @@
   become: true
   sysctl:
     name: fs.file-max
-    value: 98000
+    value: "98000"
     state: present
     reload: yes
     sysctl_set: yes

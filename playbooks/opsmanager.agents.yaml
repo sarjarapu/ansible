@@ -1,0 +1,43 @@
+---
+
+# - name: provision aws instance for ops manager
+#   hosts: local
+#   tasks:
+#     - include_role:
+#         name: aws
+#       vars:
+#         ami: "ami-00aa0a1b208ece144"
+#         group_name: "ors_mongo"
+#         instance_type: "t3.medium"
+#         data_device: "/dev/xvda"
+#         swap_device: "/dev/xvdf"
+#         data_vol_size: 30
+#       with_items:
+#         - "1"
+#         - "2"
+#         - "3"
+#       loop_control:
+#         loop_var: server_number
+
+- name: install automation agent in mongo servers
+  hosts: "ska_ors_mongo"
+  tasks:
+    - include_role:
+        name: opsmanager
+        tasks_from: automation.agent
+      vars:
+        opsmanager_uri: "https://sarjarapu.mdbrecruit.net"
+        automation_agent_version: "5.4.23.5559-1.x86_64.rhel7"
+        mms_group_id: "5dcc6e045fcae92ad9ee18d9"
+        mms_api_key: "5dcc6e045fcae92ad9ee18e086b6c88dcddd38205ad7ab83c7871f3d"
+
+# mongodb-mms-automation-agent-manager-5.4.23.5559-1.x86_64.rhel7.rpm
+# create head-db and snapshot store (ideally S3)
+# sudo mkdir -p  /app/headdb
+# sudo mkdir -p  /app/snapshots
+# sudo chown mongodb-mms:mongodb-mms -R /app/headdb
+# sudo chown mongodb-mms:mongodb-mms -R /app/snapshots
+# mongodb://superuser:supersecret@ip-172-31-6-73.us-west-2.compute.internal:28000,ip-172-31-0-160.us-west-2.compute.internal:28000,ip-172-31-11-139.us-west-2.compute.internal:28000/?authSource=admin&replicaSet=oplogdb&maxPoolSize=150
+
+
+

@@ -6,6 +6,7 @@
     - include_role:
         name: aws
       vars:
+        ami: "ami-00aa0a1b208ece144"
         group_name: "opsmgr"
         instance_type: "t3.large"
         data_vol_size: 60
